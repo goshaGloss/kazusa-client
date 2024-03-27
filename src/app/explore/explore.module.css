@@ -1,0 +1,21 @@
+.explore {
+  max-width: 88%;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.banner {
+  padding: 68px 48px;
+  width: 100%;
+  background-image: url("../../../public/banner-background.png");
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 58px;
+  color: var(--white-0);
+}
+.courseGrid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: 24px;
+}

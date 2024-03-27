@@ -1,0 +1,59 @@
+.header {
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white-0);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--brand-green);
+}
+
+.nav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.navItem:not(:last-child) {
+  margin-right: 0.75rem;
+}
+
+.navLink {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--black-0);
+  text-decoration: none;
+  line-height: 1.25rem;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.button {
+  color: var(--link-blue);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1rem;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.button:not(:last-child) {
+  margin-right: 0.75rem;
+}
