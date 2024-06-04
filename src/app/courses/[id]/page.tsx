@@ -1,9 +1,7 @@
-"use client";
-
 import Image from "next/image";
+import { Button } from "@/app/components";
 import styles from "./course-page.module.css";
 import CourseSyllabus from "@/app/courses/[id]/components/course-syllabus/course-syllabus";
-import Button from "@/app/components/button/button";
 
 type CoursePageParams = { id: string };
 
@@ -49,12 +47,7 @@ export default function CoursePage({ params }: { params: CoursePageParams }) {
           <div className={styles.courseInfo}>
             <p className={styles.courseInfoText}>Price: {course.price}</p>
             <p className={styles.courseInfoText}>Duration: {course.hours}</p>
-            <Button
-              text="Get started"
-              handleClick={() => {
-                console.log("u r started!");
-              }}
-            />
+            <Button>Get started</Button>
           </div>
         </div>
       </div>

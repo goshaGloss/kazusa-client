@@ -1,4 +1,4 @@
-import styles from "./course-list.module.css";
+import styles from "./index.module.css";
 import Table from "@/app/components/table/table";
 export default function CourseList() {
   const data = [

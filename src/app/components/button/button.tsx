@@ -1,16 +1,10 @@
-"use client";
-
+import { ButtonHTMLAttributes } from "react";
 import styles from "./button.module.css";
 
-type ButtonProps = {
-  handleClick: () => void;
-  text: string;
-};
-
-export default function Button({ text, handleClick }: ButtonProps) {
+export function Button(props: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className={styles.button} onClick={handleClick}>
-      {text}
+    <button className={styles.button} {...props}>
+      {props.children}
     </button>
   );
 }

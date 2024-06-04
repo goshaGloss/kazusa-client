@@ -42,7 +42,7 @@
   text-decoration: underline;
 }
 
-.button {
+.link {
   color: var(--link-blue);
   background-color: transparent;
   border: none;
@@ -54,6 +54,6 @@
   text-decoration: underline;
 }
 
-.button:not(:last-child) {
+.link:not(:last-child) {
   margin-right: 0.75rem;
 }

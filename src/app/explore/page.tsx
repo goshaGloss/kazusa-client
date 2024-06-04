@@ -14,19 +14,21 @@ const mockData: Course[] = new Array(40).fill({
 
 export default function ExplorePage() {
   return (
-    <div className={styles.explore}>
-      <Banner />
-      <div className={styles.courseGrid}>
-        {mockData.map(({ id, title, description, image }) => (
-          <CourseCard
-            key={id}
-            id={id}
-            title={title}
-            description={description}
-            image={image}
-          />
-        ))}
+    <>
+      <div className={styles.explore}>
+        <Banner />
+        <div className={styles.courseGrid}>
+          {mockData.map(({ id, title, description, image }) => (
+            <CourseCard
+              key={id}
+              id={id}
+              title={title}
+              description={description}
+              image={image}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -39,9 +39,13 @@ export default function Header() {
         </ul>
       </nav>
       {pathname.includes("admin") ? null : (
-        <div className={styles.buttonContainer}>
-          <button className={styles.button}>Login</button>
-          <button className={styles.button}>Sign in</button>
+        <div>
+          <Link href="/login" className={styles.link}>
+            Login
+          </Link>
+          <Link href="/register" className={styles.link}>
+            Register
+          </Link>
         </div>
       )}
     </header>
