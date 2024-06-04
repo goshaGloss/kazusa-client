@@ -1,0 +1,33 @@
+.courseSyllabusWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.courseSyllabus {
+  width: 500px;
+  border: 1px solid var(--border-color);
+}
+
+.courseSyllabusItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.courseSyllabusItem:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.courseSyllabusItemTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.courseSyllabusItemMinutes {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}

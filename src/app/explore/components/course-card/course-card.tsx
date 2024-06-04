@@ -19,7 +19,7 @@ export default function CourseCard({
       <div className={styles.courseContent}>
         <p className={styles.courseTitle}>{title}</p>
         <p className={styles.courseDescription}>{description}</p>
-        <Link className={styles.courseLink} href={`course/${id}`}>
+        <Link className={styles.courseLink} href={`courses/${id}`}>
           Learn more
         </Link>
       </div>

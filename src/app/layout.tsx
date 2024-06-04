@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import Header from "@/app/components/header/header";
 import styles from "./page.module.css";
 import "./base.css";
-import "./vars.css";
 import Footer from "@/app/components/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });

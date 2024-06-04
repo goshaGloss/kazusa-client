@@ -1,0 +1,53 @@
+.table {
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  overflow: hidden;
+}
+
+.columnHeading {
+  text-align: start;
+  text-transform: capitalize;
+  padding: 12px 0;
+}
+
+.columnHeading:first-of-type {
+  padding: 12px 0 12px 24px;
+}
+
+.columnHeading:last-of-type {
+  padding: 12px 24px 12px 0;
+}
+
+.tableHeading {
+  padding: 12px 24px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.tableRow {
+  height: 33px;
+}
+
+.tableCell:first-of-type {
+  padding-left: 24px;
+}
+
+.tableAction {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tableAction:not(:last-child) {
+  margin-right: 4px;
+}
+
+.tableActions {
+  display: flex;
+  flex-wrap: wrap;
+}
