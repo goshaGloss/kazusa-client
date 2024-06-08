@@ -1,5 +1,9 @@
+"use client";
+
+import { useCallback } from "react";
 import styles from "./index.module.css";
 import Table from "@/app/components/table/table";
+import Pagination from "@/app/components/pagination/pagination";
 export default function CourseList() {
   const data = [
     {
@@ -58,98 +62,22 @@ export default function CourseList() {
       duration: "2.5 часа",
       price: 180,
     },
-    {
-      id: 8,
-      courseId: 21,
-      name: "Обработка естественного языка",
-      duration: "2 часа",
-      price: 200,
-    },
-    {
-      id: 9,
-      courseId: 21,
-      name: "Обработка естественного языка",
-      duration: "2 часа",
-      price: 200,
-    },
-    {
-      id: 10,
-      courseId: 3,
-      name: "Рекомендательные системы",
-      duration: "1.5 часа",
-      price: 150,
-    },
-    {
-      id: 11,
-      courseId: 3,
-      name: "Рекомендательные системы",
-      duration: "1.5 часа",
-      price: 150,
-    },
-    {
-      id: 12,
-      courseId: 10,
-      name: "Компьютерное зрение",
-      duration: "2 часа",
-      price: 190,
-    },
-    {
-      id: 13,
-      courseId: 10,
-      name: "Компьютерное зрение",
-      duration: "2 часа",
-      price: 190,
-    },
-    {
-      id: 14,
-      courseId: 14,
-      name: "Робототехника",
-      duration: "3 часа",
-      price: 250,
-    },
-    {
-      id: 15,
-      courseId: 14,
-      name: "Робототехника",
-      duration: "3 часа",
-      price: 250,
-    },
-    {
-      id: 16,
-      courseId: 9,
-      name: "Автоматизация процессов",
-      duration: "2.5 часа",
-      price: 180,
-    },
-    {
-      id: 17,
-      courseId: 9,
-      name: "Автоматизация процессов",
-      duration: "2.5 часа",
-      price: 180,
-    },
-    {
-      id: 18,
-      courseId: 7,
-      name: "Обучение с подкреплением",
-      duration: "2 часа",
-      price: 200,
-    },
-    {
-      id: 19,
-      courseId: 7,
-      name: "Обучение с подкреплением",
-      duration: "2 часа",
-      price: 200,
-    },
   ];
-
+  const handlePageChange = useCallback((pageNumber: number) => {
+    return pageNumber;
+  }, []);
   const columns = Object.keys(data[0]);
   return (
     <div className={styles.courseList}>
       <div className={styles.courseContainer}>
         <p className={styles.courseContainerTitle}>Course List</p>
         <Table columns={columns} data={data} />
+        <Pagination
+          offset={10}
+          limit={10}
+          hasMore={data.length > 0}
+          onChange={handlePageChange}
+        />
       </div>
     </div>
   );

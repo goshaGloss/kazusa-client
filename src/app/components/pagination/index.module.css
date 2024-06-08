@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.control {
+  background: var(--white-0);
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

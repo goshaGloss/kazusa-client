@@ -10,7 +10,6 @@
 .courseContainer {
   background-color: var(--white-0);
   padding: 48px;
-  height: 500px;
   width: 100%;
   overflow: hidden;
 }

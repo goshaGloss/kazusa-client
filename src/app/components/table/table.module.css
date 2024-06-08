@@ -5,6 +5,7 @@
   font-weight: 400;
   line-height: 16px;
   overflow: hidden;
+  table-layout: fixed;
 }
 
 .columnHeading {
@@ -28,6 +29,12 @@
 
 .tableRow {
   height: 33px;
+}
+
+.tableCell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tableCell:first-of-type {
