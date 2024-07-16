@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gen:swag": "orval --config orval.config.ts"
   },
   "lint-staged": {
     "*.{js, jsx,ts,tsx}": [
@@ -20,18 +21,22 @@
   "dependencies": {
     "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.52.1",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "axios": "^1.7.2",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.2",
+    "orval": "^6.31.0",
     "prettier": "^3.2.5",
     "typescript": "^5"
   }
