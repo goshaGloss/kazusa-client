@@ -1,9 +1,14 @@
 import Link from "next/link";
 import styles from "./course-card.module.css";
 import Image from "next/image";
-import { Course } from "@/app/explore/components/course-grid";
+import { Course } from "@/generated/models";
 
-type CourseCardProps = Omit<Course, "price">;
+type CourseCardProps = Pick<
+  Course,
+  "id" | "title" | "description" | "price"
+> & {
+  image: string;
+};
 
 export default function CourseCard({
   title,

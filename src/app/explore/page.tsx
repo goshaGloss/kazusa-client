@@ -45,7 +45,7 @@ export default async function ExplorePage({ searchParams }: IExplorePageProps) {
                 id={id}
                 title={title}
                 description={description}
-                image={""}
+                image=""
               />
             ))}
           </div>
