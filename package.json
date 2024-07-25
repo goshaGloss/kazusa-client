@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "gen:swag": "orval --config orval.config.ts"
+    "gen:swag": "swagger-typescript-api -p ./swagger.json -o ./src/generated -n models.ts --no-client"
   },
   "lint-staged": {
     "*.{js, jsx,ts,tsx}": [
@@ -38,6 +38,7 @@
     "lint-staged": "^15.2.2",
     "orval": "^6.31.0",
     "prettier": "^3.2.5",
+    "swagger-typescript-api": "^13.0.13",
     "typescript": "^5"
   }
 }
