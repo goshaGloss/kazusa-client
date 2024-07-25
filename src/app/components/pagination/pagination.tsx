@@ -1,37 +1,49 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
 import styles from "./index.module.css";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useCallback, useMemo } from "react";
 
-interface IPaginationProps {
-  offset: number;
-  limit: number;
-  hasMore: boolean;
-  // eslint-disable-next-line no-unused-vars
-  onChange: (offset: number) => void;
-}
+export default function Pagination() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const params = new URLSearchParams(searchParams);
 
-export default function Pagination({
-  offset,
-  limit,
-  hasMore,
-  onChange,
-}: IPaginationProps) {
-  const hasPrev = useMemo(() => offset > limit, [offset, limit]);
-
-  const handlePrevClick = useCallback(
-    () => onChange(offset - limit),
-    [offset, limit, onChange],
+  const handlePageChange = useCallback(
+    (offset: number) => {
+      if (offset) {
+        params.set("offset", String(offset));
+      } else {
+        params.delete("offset");
+      }
+      router.replace(`${pathname}?${params.toString()}`);
+    },
+    [params, router, pathname],
   );
 
-  const handleNextClick = useCallback(
-    () => onChange(offset + limit),
-    [offset, limit, onChange],
-  );
+  const hasPrev = useMemo(() => {
+    const offset = searchParams.get("offset") || 0;
+    const limit = searchParams.get("limit");
+
+    return Number(offset) > Number(limit);
+  }, [searchParams]);
+
+  const handlePrevClick = useCallback(() => {
+    const offset = searchParams.get("offset");
+
+    return handlePageChange(Number(offset) - 20);
+  }, [searchParams, handlePageChange]);
+
+  const handleNextClick = useCallback(() => {
+    const offset = searchParams.get("offset");
+
+    return handlePageChange(Number(offset) + 20);
+  }, [searchParams, handlePageChange]);
 
   return (
     <div className={styles.container}>
-      Show: {offset} - {offset + limit}
+      {/* Show: {offset} - {offset + limit} */}
       <button
         className={styles.control}
         onClick={handlePrevClick}
@@ -43,7 +55,7 @@ export default function Pagination({
       <button
         className={styles.control}
         onClick={handleNextClick}
-        disabled={!hasMore}
+        // disabled={!hasMore}
         type="button"
       >
         {">"}
