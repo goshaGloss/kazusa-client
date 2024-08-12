@@ -4,6 +4,7 @@ import styles from "./course-page.module.css";
 import CourseSyllabus from "@/app/courses/[id]/components/course-syllabus/course-syllabus";
 import { BASE_URL } from "@/common/contants";
 import { Course } from "@/generated/models";
+import Link from "next/link";
 
 type CoursePageParams = { id: string };
 
@@ -21,13 +22,15 @@ export default async function CoursePage({
   const courses = await getCourse(params.id);
   const course = courses[0];
 
+  console.log(course);
+
   return (
     <div className={styles.coursePage}>
       <div className={styles.courseContent}>
         <div className={styles.coursePageLeft}>
           <p className={styles.courseTitle}>{course.title}</p>
           <p className={styles.courseDescription}>{course.description}</p>
-          <CourseSyllabus syllabus={[]} />
+          <CourseSyllabus syllabus={course.modules || []} />
         </div>
         <div className={styles.coursePageRight}>
           <div className={styles.coursePageImage}>
@@ -41,7 +44,14 @@ export default async function CoursePage({
           <div className={styles.courseInfo}>
             <p className={styles.courseInfoText}>Price: {course.price}</p>
             <p className={styles.courseInfoText}>Duration: 10h</p>
-            <Button>Get started</Button>
+            <Button>
+              <Link
+                style={{ textDecoration: "none", color: "#fff" }}
+                href={`/modules/${course?.modules?.[0].id || ""}`}
+              >
+                Get started
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

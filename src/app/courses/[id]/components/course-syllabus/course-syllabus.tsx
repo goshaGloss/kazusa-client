@@ -1,13 +1,9 @@
+import { Module } from "@/generated/models";
 import styles from "./course-syllabus.module.css";
 import SyllabusItem from "@/app/courses/[id]/components/course-syllabus/syllabus-item";
 
-export type CourseSyllabusType = {
-  title: string;
-  min: number;
-};
-
 type CourseSyllabusProps = {
-  syllabus: CourseSyllabusType[];
+  syllabus: Module[];
 };
 
 export default function CourseSyllabus({ syllabus }: CourseSyllabusProps) {
@@ -17,8 +13,8 @@ export default function CourseSyllabus({ syllabus }: CourseSyllabusProps) {
         {syllabus.map((syllabusItem, index) => (
           <SyllabusItem
             key={index}
-            title={syllabusItem.title}
-            min={syllabusItem.min}
+            title={syllabusItem.name}
+            min={syllabusItem.durationMinutes}
           />
         ))}
       </div>

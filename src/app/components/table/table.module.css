@@ -12,6 +12,8 @@
   text-align: start;
   text-transform: capitalize;
   padding: 12px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .columnHeading:first-of-type {

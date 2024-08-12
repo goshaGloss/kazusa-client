@@ -1,0 +1,16 @@
+.modulePage {
+  max-width: 1024px;
+  flex: 1 1 auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.moduleContent {
+  background-color: var(--white-0);
+  padding: 36px;
+  display: flex;
+  height: 700px;
+  width: 700px;
+}

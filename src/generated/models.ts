@@ -13,8 +13,19 @@ export interface Course {
   createdAt: string;
   description: string;
   id: string;
+  modules?: Module[];
   price: number;
   title: string;
+  updatedAt?: string;
+}
+
+export interface Module {
+  content: string;
+  courseId: string;
+  createdAt: string;
+  durationMinutes: number;
+  id: string;
+  name: string;
   updatedAt?: string;
 }
 
@@ -22,6 +33,13 @@ export interface NewCourse {
   description: string;
   price: number;
   title: string;
+}
+
+export interface NewModule {
+  content: string;
+  courseId: string;
+  durationMinutes: number;
+  name: string;
 }
 
 export interface InternalHandlerLoginRequest {
@@ -45,36 +63,4 @@ export interface InternalHandlerRegisterRequest {
 export interface InternalHandlerRegisterResponse {
   error?: string;
   ok?: boolean;
-}
-
-export interface KazusaServerInternalEntityModule {
-  content?: string;
-  courseId?: string;
-  createdAt?: string;
-  durationMinutes?: number;
-  id?: string;
-  name?: string;
-  updatedAt?: string;
-}
-
-export interface KazusaServerInternalEntityModuleFilters {
-  courseId?: string;
-  id?: string;
-}
-
-export interface KazusaServerInternalEntityModuleReadRequest {
-  filters?: KazusaServerInternalEntityModuleFilters;
-  pagination?: KazusaServerInternalEntityPagination;
-}
-
-export interface KazusaServerInternalEntityNewModule {
-  content?: string;
-  courseId?: string;
-  durationMinutes?: number;
-  name?: string;
-}
-
-export interface KazusaServerInternalEntityPagination {
-  limit?: number;
-  offset?: number;
 }
