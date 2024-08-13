@@ -10,7 +10,12 @@
 .moduleContent {
   background-color: var(--white-0);
   padding: 36px;
-  display: flex;
   height: 700px;
   width: 700px;
+}
+
+.moduleControls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
 }

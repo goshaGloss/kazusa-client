@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import { Textarea } from "@/app/components/textarea/textarea";
 import { BASE_URL } from "@/common/contants";
 import { Course } from "@/generated/models";
+import Editor from "@/app/components/editor/editor";
 
 async function getCourses(): Promise<Course[]> {
   const res = await fetch(`${BASE_URL}/course?offset=${0}&limit=${20}`);
@@ -49,7 +50,7 @@ export default async function Page() {
           name="durationMinutes"
           placeholder="Duration"
         />
-        <Textarea name="content" placeholder="Content" />
+        <Editor textareaName="content" />
         <Button type="submit">Create</Button>
       </div>
     </form>
