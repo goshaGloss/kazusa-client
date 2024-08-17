@@ -1,29 +1,42 @@
-"use client";
-
-import { useLogin } from "@/default/default";
+import { redirect } from "next/navigation";
 import { Input, Button } from "../components";
 import styles from "./index.module.css";
-import { InternalHandlerLoginRequest } from "@/models";
-import { useForm } from "react-hook-form";
+import {
+  InternalHandlerLoginRequest,
+  InternalHandlerLoginResponse,
+} from "@/generated/models";
+import { cookies } from "next/headers";
 
 export default function Page() {
-  const { trigger: login } = useLogin();
-  const { register, handleSubmit } = useForm<InternalHandlerLoginRequest>();
+  async function login(formData: FormData) {
+    "use server";
+    const body: InternalHandlerLoginRequest = {};
 
-  const onSubmit = (data: InternalHandlerLoginRequest) => {
-    login(data);
-  };
+    body.email = String(formData.get("email"));
+    body.password = String(formData.get("password"));
+
+    const raw = await fetch("/login", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+
+    const res: InternalHandlerLoginResponse = await raw.json();
+
+    const token = res.ok; // lol
+
+    if (token) {
+      cookies().set("token", String(token));
+    }
+
+    redirect("/explore");
+  }
 
   return (
     <div className={styles.wrapper}>
-      <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.container} action={login}>
         <h2 className={styles.heading}>Login</h2>
-        <Input {...register("email")} type="text" placeholder="Email" />
-        <Input
-          {...register("password")}
-          type="password"
-          placeholder="Password"
-        />
+        <Input name="email" type="text" placeholder="Email" />
+        <Input name="password" type="password" placeholder="Password" />
         <Button type="submit">Submit</Button>
       </form>
     </div>
