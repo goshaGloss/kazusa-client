@@ -1,6 +1,5 @@
 import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
-import { Textarea } from "@/app/components/textarea/textarea";
 import { BASE_URL } from "@/common/contants";
 import { Course } from "@/generated/models";
 import Editor from "@/app/components/editor/editor";
