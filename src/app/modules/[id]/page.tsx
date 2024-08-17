@@ -37,22 +37,21 @@ export default async function ModulePage({ params }: ModulePageParams) {
   const prevId = foundModuleIndex - 1;
   const nextId = foundModuleIndex + 1;
 
-  const prevModule = courseModules[prevId];
-  const nextModule = courseModules[nextId];
+  const prevModuleId = courseModules[prevId].id;
+  const nextModuleId = courseModules[nextId].id;
 
-  console.log("sex", prevId, nextId, moduleData);
   return (
     <div className={styles.modulePage}>
       <div className={styles.moduleContent}>
         <div dangerouslySetInnerHTML={{ __html: moduleData.content }} />
         <div className={styles.moduleControls}>
-          {prevModule ? (
-            <Link href={`/modules/${prevModule.id || ""}`}>prev</Link>
+          {prevModuleId ? (
+            <Link href={`/modules/${prevModuleId || ""}`}>prev</Link>
           ) : (
             <div />
           )}
-          {nextModule ? (
-            <Link href={`/modules/${nextModule.id || ""}`}>next</Link>
+          {nextModuleId ? (
+            <Link href={`/modules/${nextModuleId || ""}`}>next</Link>
           ) : (
             <div />
           )}
