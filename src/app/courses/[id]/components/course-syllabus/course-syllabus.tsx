@@ -13,8 +13,8 @@ export default function CourseSyllabus({ syllabus }: CourseSyllabusProps) {
         {syllabus.map((syllabusItem, index) => (
           <SyllabusItem
             key={index}
-            title={syllabusItem.name}
-            min={syllabusItem.durationMinutes}
+            name={syllabusItem.name}
+            durationMinutes={syllabusItem.durationMinutes}
           />
         ))}
       </div>

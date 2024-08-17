@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 
 export const Input = forwardRef(function Input(
   props: InputHTMLAttributes<HTMLInputElement>,
-  ref: Ref<HTMLInputElement> ,
+  ref: Ref<HTMLInputElement>,
 ) {
   return <input ref={ref} {...props} className={styles.input} />;
 });
