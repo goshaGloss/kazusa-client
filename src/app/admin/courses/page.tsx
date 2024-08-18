@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import styles from "./index.module.css";
 import Table from "@/app/components/table/table";
 import Pagination from "@/app/components/pagination/pagination";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Module } from "@/generated/models";
 import styles from "./module-page.module.css";
 import Link from "next/link";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import styles from "./explore.module.css";
 import Banner from "@/app/explore/components/banner";
 import CourseCard from "@/app/explore/components/course-card/course-card";

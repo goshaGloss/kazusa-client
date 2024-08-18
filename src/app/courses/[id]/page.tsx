@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { Button } from "@/app/components";
 import styles from "./course-page.module.css";

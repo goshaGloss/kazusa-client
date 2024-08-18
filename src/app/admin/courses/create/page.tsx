@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
 import { Textarea } from "@/app/components/textarea/textarea";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { redirect } from "next/navigation";
 import { Input, Button } from "../components";
 import styles from "./index.module.css";
