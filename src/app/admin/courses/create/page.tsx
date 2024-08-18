@@ -1,7 +1,6 @@
 import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
 import { Textarea } from "@/app/components/textarea/textarea";
-import { BASE_URL } from "@/common/contants";
 
 export default function Page() {
   async function createCourse(formData: FormData) {
@@ -13,7 +12,7 @@ export default function Page() {
       description: formData.get("description"),
     };
 
-    const res = await fetch(`${BASE_URL}/course`, {
+    const res = await fetch(`${process.env.BASE_URL}/course`, {
       method: "POST",
       body: JSON.stringify(rawFormData),
     });
