@@ -2,13 +2,14 @@ import Image from "next/image";
 import { Button } from "@/app/components";
 import styles from "./course-page.module.css";
 import CourseSyllabus from "@/app/courses/[id]/components/course-syllabus/course-syllabus";
+import { BASE_URL } from "@/common/contants";
 import { Course } from "@/generated/models";
 import Link from "next/link";
 
 type CoursePageParams = { id: string };
 
 async function getCourse(id: string): Promise<Course[]> {
-  const res = await fetch(`${process.env.BASE_URL}/course?id=${id}&offset=0&limit=1`);
+  const res = await fetch(`${BASE_URL}/course?id=${id}&offset=0&limit=1`);
 
   return res.json();
 }

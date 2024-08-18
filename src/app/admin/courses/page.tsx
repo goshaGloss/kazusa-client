@@ -1,6 +1,7 @@
 import styles from "./index.module.css";
 import Table from "@/app/components/table/table";
 import Pagination from "@/app/components/pagination/pagination";
+import { BASE_URL } from "@/common/contants";
 import { Course } from "@/generated/models";
 
 async function getCourses({
@@ -10,7 +11,7 @@ async function getCourses({
   limit: number;
   offset: number;
 }): Promise<Course[]> {
-  const res = await fetch(`${process.env.BASE_URL}/course?offset=${offset}&limit=${limit}`);
+  const res = await fetch(`${BASE_URL}/course?offset=${offset}&limit=${limit}`);
 
   return res.json();
 }

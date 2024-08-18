@@ -1,5 +1,6 @@
 import { Module } from "@/generated/models";
 import styles from "./module-page.module.css";
+import { BASE_URL } from "@/common/contants";
 import Link from "next/link";
 
 type ModulePageParams = {
@@ -9,12 +10,13 @@ type ModulePageParams = {
 };
 
 async function getModule(id: string): Promise<Module[]> {
-  const res = await fetch(`${process.env.BASE_URL}/module?id=${encodeURIComponent(id)}`);
+  const res = await fetch(`${BASE_URL}/module?id=${encodeURIComponent(id)}`);
 
   return res.json();
 }
 
 async function getModules(courseId: string): Promise<Module[]> {
+  console.log(`${BASE_URL}/module?course_id=${courseId}`);
   const res = await fetch(
     `${BASE_URL}/module?course_id=${encodeURIComponent(courseId)}`,
   );
