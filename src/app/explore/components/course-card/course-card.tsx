@@ -5,7 +5,7 @@ import { Course } from "@/generated/models";
 
 type CourseCardProps = Pick<
   Course,
-  "id" | "title" | "description"
+  "id" | "title" | "description" | "price"
 > & {
   image: string;
 };
