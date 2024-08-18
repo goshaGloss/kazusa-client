@@ -38,12 +38,13 @@ export default async function ExplorePage({ searchParams }: IExplorePageProps) {
         <Banner />
         <Suspense key={offset + limit} fallback={"Loading..."}>
           <div className={styles.courseGrid}>
-            {courses?.map(({ id, title, description }) => (
+            {courses?.map(({ id, title, description, price }) => (
               <CourseCard
                 key={id}
                 id={id}
                 title={title}
                 description={description}
+                price={price}
                 image=""
               />
             ))}
