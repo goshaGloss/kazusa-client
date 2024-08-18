@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function Home() {
-  return <h2>lol</h2>;
+  redirect("/explore");
 }

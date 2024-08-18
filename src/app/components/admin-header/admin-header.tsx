@@ -17,11 +17,6 @@ export default function AdminHeader() {
               Modules
             </Link>
           </li>
-          <li className={styles.navItem}>
-            <Link className={styles.navLink} href="/admin/users">
-              Users
-            </Link>
-          </li>
         </ul>
       </nav>
     </header>

@@ -37,8 +37,9 @@ export default async function ModulePage({ params }: ModulePageParams) {
   const prevId = foundModuleIndex - 1;
   const nextId = foundModuleIndex + 1;
 
-  const prevModuleId = courseModules[prevId].id;
-  const nextModuleId = courseModules[nextId].id;
+  const prevModuleId = prevId < 0 ? courseModules[prevId]?.id : null;
+  const nextModuleId =
+    nextId >= courseModules.length ? courseModules[nextId]?.id : null;
 
   return (
     <div className={styles.modulePage}>

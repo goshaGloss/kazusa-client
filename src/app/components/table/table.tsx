@@ -1,4 +1,5 @@
 "use client";
+
 import styles from "./table.module.css";
 import Image from "next/image";
 
@@ -29,7 +30,7 @@ export default function Table({ columns, data }: TableProps) {
           <tr className={styles.tableRow} key={index}>
             {columns.map((column, columnIndex) => (
               <td className={styles.tableCell} key={columnIndex}>
-                {cellData[column]}
+                {JSON.stringify(cellData[column])}
               </td>
             ))}
             <td className={styles.tableCell}>

@@ -31,8 +31,6 @@ export default async function ModuleList({ searchParams }: IModulePageProps) {
     limit,
   });
 
-  console.log(modules, "modules");
-
   const columns = Object.keys(modules[0] || {});
   return (
     <div className={styles.courseList}>
