@@ -1,7 +1,6 @@
 import styles from "./explore.module.css";
 import Banner from "@/app/explore/components/banner";
 import CourseCard from "@/app/explore/components/course-card/course-card";
-import { BASE_URL } from "@/common/contants";
 import { Course } from "@/generated/models";
 import Pagination from "../components/pagination/pagination";
 import { Suspense } from "react";
@@ -13,7 +12,7 @@ async function getCourses({
   limit: number;
   offset: number;
 }): Promise<Course[]> {
-  const res = await fetch(`${BASE_URL}/course?offset=${offset}&limit=${limit}`);
+  const res = await fetch(`${process.env.BASE_URL}/course?offset=${offset}&limit=${limit}`);
 
   return res.json();
 }

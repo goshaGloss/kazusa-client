@@ -1,11 +1,10 @@
 import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
-import { BASE_URL } from "@/common/contants";
 import { Course } from "@/generated/models";
 import Editor from "@/app/components/editor/editor";
 
 async function getCourses(): Promise<Course[]> {
-  const res = await fetch(`${BASE_URL}/course?offset=${0}&limit=${20}`);
+  const res = await fetch(`${process.env.BASE_URL}/course?offset=${0}&limit=${20}`);
 
   return res.json();
 }
@@ -23,7 +22,7 @@ export default async function Page() {
       durationMinutes: Number(formData.get("durationMinutes")),
     };
 
-    const res = await fetch(`${BASE_URL}/module`, {
+    const res = await fetch(`${process.env.BASE_URL}/module`, {
       method: "POST",
       body: JSON.stringify(rawFormData),
     });
