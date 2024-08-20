@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
 import { Textarea } from "@/app/components/textarea/textarea";
+import { redirect } from "next/navigation";
 
 export default function Page() {
   async function createCourse(formData: FormData) {
@@ -14,12 +15,16 @@ export default function Page() {
       description: formData.get("description"),
     };
 
-    const res = await fetch(`${process.env.BASE_URL}/course`, {
+    const raw = await fetch(`${process.env.BASE_URL}/course`, {
       method: "POST",
       body: JSON.stringify(rawFormData),
     });
 
-    return res.json();
+    const res: boolean = await raw.json();
+
+    if (res) {
+      redirect("/admin/courses");
+    }
   }
 
   return (

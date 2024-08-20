@@ -4,9 +4,12 @@ import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
 import { Course } from "@/generated/models";
 import Editor from "@/app/components/editor/editor";
+import { redirect } from "next/navigation";
 
 async function getCourses(): Promise<Course[]> {
-  const res = await fetch(`${process.env.BASE_URL}/course?offset=${0}&limit=${20}`);
+  const res = await fetch(
+    `${process.env.BASE_URL}/course?offset=${0}&limit=${20}`,
+  );
 
   return res.json();
 }
@@ -24,12 +27,16 @@ export default async function Page() {
       durationMinutes: Number(formData.get("durationMinutes")),
     };
 
-    const res = await fetch(`${process.env.BASE_URL}/module`, {
+    const raw = await fetch(`${process.env.BASE_URL}/module`, {
       method: "POST",
       body: JSON.stringify(rawFormData),
     });
 
-    return res.json();
+    const res: boolean = await raw.json();
+
+    if (res) {
+      redirect("/admin/modules");
+    }
   }
 
   return (
