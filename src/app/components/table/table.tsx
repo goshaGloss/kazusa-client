@@ -5,6 +5,7 @@ import Image from "next/image";
 interface ITableProps<T> {
   columns: Array<keyof T>;
   data: T[];
+  // eslint-disable-next-line no-unused-vars
   onDelete: (id: string) => void;
   updateUrl: string;
 }
