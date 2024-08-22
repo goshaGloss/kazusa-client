@@ -19,6 +19,13 @@ export interface Course {
   updatedAt?: string;
 }
 
+export interface CourseUpdateBody {
+  description?: string;
+  id: string;
+  price?: number;
+  title?: string;
+}
+
 export interface Module {
   content: string;
   courseId: string;
@@ -40,6 +47,46 @@ export interface NewModule {
   courseId: string;
   durationMinutes: number;
   name: string;
+}
+
+export interface NewUser {
+  email: string;
+  name: string;
+  password: string;
+  phone: string;
+  role: EntityRole;
+}
+
+export interface User {
+  createdAt: string;
+  email: string;
+  id: string;
+  name: string;
+  password?: string;
+  phone: string;
+  role?: EntityRole;
+  updatedAt?: string;
+}
+
+export interface UserUpdateBody {
+  email?: string;
+  id: string;
+  name?: string;
+  password?: string;
+  phone?: string;
+  role?: EntityRole;
+}
+
+export interface EntityModuleUpdateBody {
+  content?: string;
+  courseId: string;
+  durationMinutes?: number;
+  name?: string;
+}
+
+export enum EntityRole {
+  AdminRole = "admin",
+  UserRole = "user",
 }
 
 export interface HandlerLoginRequest {
