@@ -25,8 +25,6 @@ export default async function CoursePage({
   const courses = await getCourse(params.id);
   const course = courses[0];
 
-  console.log(course);
-
   return (
     <div className={styles.coursePage}>
       <div className={styles.courseContent}>

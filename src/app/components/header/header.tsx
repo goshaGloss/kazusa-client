@@ -5,8 +5,6 @@ import { getUser } from "@/app/utils/auth";
 export default function Header() {
   const creds = getUser();
 
-  console.log(creds);
-
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Logo</h1>

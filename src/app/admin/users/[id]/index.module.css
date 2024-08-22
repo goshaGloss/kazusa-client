@@ -1,0 +1,24 @@
+.wrapper {
+  width: 1024px;
+  margin: 96px auto;
+
+  flex: 1 1 auto;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 72px;
+  background-color: #fff;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+}

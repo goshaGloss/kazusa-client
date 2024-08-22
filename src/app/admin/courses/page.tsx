@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import Table from "@/app/components/table/table";
 import Pagination from "@/app/components/pagination/pagination";
 import { Course } from "@/generated/models";
+import { revalidatePath } from "next/cache";
 
 async function getCourses({
   limit,
@@ -12,7 +13,9 @@ async function getCourses({
   limit: number;
   offset: number;
 }): Promise<Course[]> {
-  const res = await fetch(`${process.env.BASE_URL}/course?offset=${offset}&limit=${limit}`);
+  const res = await fetch(
+    `${process.env.BASE_URL}/course?offset=${offset}&limit=${limit}`,
+  );
 
   return res.json();
 }
@@ -32,12 +35,31 @@ export default async function CourseList({ searchParams }: ICoursePageProps) {
     limit,
   });
 
-  const columns = Object.keys(courses[0] || {});
+  const deleteCourse = async (id: string) => {
+    "use server";
+
+    const raw = await fetch(`${process.env.BASE_URL}/course?id=${id}`, {
+      method: "DELETE",
+    });
+
+    const ok: boolean = await raw.json();
+
+    if (ok) {
+      revalidatePath("/admin/course");
+    }
+  };
+
+  const columns = Object.keys(courses[0] || {}) as (keyof Course)[];
   return (
     <div className={styles.courseList}>
       <div className={styles.courseContainer}>
         <p className={styles.courseContainerTitle}>Course List</p>
-        <Table columns={columns} data={courses} />
+        <Table
+          updateUrl="courses"
+          onDelete={deleteCourse}
+          columns={columns}
+          data={courses}
+        />
         <Pagination />
       </div>
     </div>

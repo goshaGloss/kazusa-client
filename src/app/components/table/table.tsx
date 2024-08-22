@@ -1,22 +1,28 @@
-"use client";
-
+import Link from "next/link";
 import styles from "./table.module.css";
 import Image from "next/image";
 
-type TableProps = {
-  columns: string[];
-  data: Record<string, any>[];
-};
+interface ITableProps<T> {
+  columns: Array<keyof T>;
+  data: T[];
+  onDelete: (id: string) => void;
+  updateUrl: string;
+}
 
-export default function Table({ columns, data }: TableProps) {
+export default function Table<T extends { id: string }>({
+  columns,
+  data,
+  onDelete,
+  updateUrl,
+}: ITableProps<T>) {
   return (
     <table className={styles.table}>
       <thead className={styles.tableHeading}>
         <tr>
           {columns.map((column) => {
             return (
-              <th key={column} className={styles.columnHeading} id="tr">
-                {column}
+              <th key={String(column)} className={styles.columnHeading} id="tr">
+                {String(column)}
               </th>
             );
           })}
@@ -35,7 +41,11 @@ export default function Table({ columns, data }: TableProps) {
             ))}
             <td className={styles.tableCell}>
               <div className={styles.tableActions}>
-                <button className={styles.tableAction}>
+                <Link
+                  href={`${updateUrl}/${cellData.id}`}
+                  className={styles.tableAction}
+                  type="submit"
+                >
                   <Image
                     alt="add"
                     src="/circle-plus.svg"
@@ -43,16 +53,18 @@ export default function Table({ columns, data }: TableProps) {
                     width={14}
                     height={14}
                   />
-                </button>
-                <button className={styles.tableAction}>
-                  <Image
-                    alt="add"
-                    src="/trash.svg"
-                    objectFit="cover"
-                    width={14}
-                    height={14}
-                  />
-                </button>
+                </Link>
+                <form action={onDelete?.bind(null, cellData.id)}>
+                  <button className={styles.tableAction}>
+                    <Image
+                      alt="add"
+                      src="/trash.svg"
+                      objectFit="cover"
+                      width={14}
+                      height={14}
+                    />
+                  </button>
+                </form>
               </div>
             </td>
           </tr>

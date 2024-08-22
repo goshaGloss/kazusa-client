@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import Table from "@/app/components/table/table";
 import Pagination from "@/app/components/pagination/pagination";
 import { Module } from "@/generated/models";
+import { revalidatePath } from "next/cache";
 
 async function getModules({
   limit,
@@ -12,7 +13,9 @@ async function getModules({
   limit: number;
   offset: number;
 }): Promise<Module[]> {
-  const res = await fetch(`${process.env.BASE_URL}/module?offset=${offset}&limit=${limit}`);
+  const res = await fetch(
+    `${process.env.BASE_URL}/module?offset=${offset}&limit=${limit}`,
+  );
 
   return res.json();
 }
@@ -32,12 +35,31 @@ export default async function ModuleList({ searchParams }: IModulePageProps) {
     limit,
   });
 
-  const columns = Object.keys(modules[0] || {});
+  const deleteModule = async (id: string) => {
+    "use server";
+
+    const raw = await fetch(`${process.env.BASE_URL}/module?id=${id}`, {
+      method: "DELETE",
+    });
+
+    const ok: boolean = await raw.json();
+
+    if (ok) {
+      revalidatePath("/admin/module");
+    }
+  };
+
+  const columns = Object.keys(modules[0] || {}) as (keyof Module)[];
   return (
     <div className={styles.courseList}>
       <div className={styles.courseContainer}>
         <p className={styles.courseContainerTitle}>Module List</p>
-        <Table columns={columns} data={modules} />
+        <Table
+          updateUrl="modules"
+          onDelete={deleteModule}
+          columns={columns}
+          data={modules}
+        />
         <Pagination />
       </div>
     </div>

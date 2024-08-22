@@ -36,6 +36,13 @@ export interface Module {
   updatedAt?: string;
 }
 
+export interface ModuleUpdateBody {
+  content?: string;
+  durationMinutes?: number;
+  id: string;
+  name?: string;
+}
+
 export interface NewCourse {
   description: string;
   price: number;
@@ -75,13 +82,6 @@ export interface UserUpdateBody {
   password?: string;
   phone?: string;
   role?: EntityRole;
-}
-
-export interface EntityModuleUpdateBody {
-  content?: string;
-  courseId: string;
-  durationMinutes?: number;
-  name?: string;
 }
 
 export enum EntityRole {
