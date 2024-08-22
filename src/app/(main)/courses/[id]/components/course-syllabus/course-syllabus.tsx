@@ -1,6 +1,6 @@
 import { Module } from "@/generated/models";
 import styles from "./course-syllabus.module.css";
-import SyllabusItem from "@/app/courses/[id]/components/course-syllabus/syllabus-item";
+import SyllabusItem from "../course-syllabus/syllabus-item";
 
 type CourseSyllabusProps = {
   syllabus: Module[];

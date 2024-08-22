@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { redirect } from "next/navigation";
-import { Input, Button } from "../components";
+import { Input, Button } from "@/app/components";
 import styles from "./index.module.css";
 import { HandlerLoginRequest, HandlerLoginResponse } from "@/generated/models";
 import { cookies } from "next/headers";

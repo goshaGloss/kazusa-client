@@ -12,6 +12,7 @@
   padding: 36px;
   height: 700px;
   width: 700px;
+  overflow: auto;
 }
 
 .moduleControls {
