@@ -8,8 +8,10 @@
 }
 
 .courseContent {
+  min-width: 700px;
   background-color: var(--white-0);
   padding: 36px;
+  min-height: 400px;
   max-height: 700px;
   display: flex;
 }

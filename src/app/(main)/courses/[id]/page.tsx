@@ -31,7 +31,9 @@ export default async function CoursePage({
         <div className={styles.coursePageLeft}>
           <p className={styles.courseTitle}>{course.title}</p>
           <p className={styles.courseDescription}>{course.description}</p>
-          <CourseSyllabus syllabus={course.modules || []} />
+          {course?.modules?.length ? (
+            <CourseSyllabus syllabus={course.modules || []} />
+          ) : null}
         </div>
         <div className={styles.coursePageRight}>
           <div className={styles.coursePageImage}>
@@ -45,14 +47,16 @@ export default async function CoursePage({
           <div className={styles.courseInfo}>
             <p className={styles.courseInfoText}>Price: {course.price}</p>
             <p className={styles.courseInfoText}>Duration: 10h</p>
-            <Button>
-              <Link
-                style={{ textDecoration: "none", color: "#fff" }}
-                href={`/modules/${course?.modules?.[0].id || ""}`}
-              >
-                Get started
-              </Link>
-            </Button>
+            {course?.modules?.length ? (
+              <Button>
+                <Link
+                  style={{ textDecoration: "none", color: "#fff" }}
+                  href={`/modules/${course?.modules?.[0].id || ""}`}
+                >
+                  Get started
+                </Link>
+              </Button>
+            ) : null}
           </div>
         </div>
       </div>
