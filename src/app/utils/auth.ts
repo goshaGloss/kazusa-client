@@ -1,29 +1,31 @@
-interface User {
-  username: string;
+import { cookies } from "next/headers";
+import { jwtDecode } from "jwt-decode";
+
+interface UserClaims {
+  name: string;
+  role: "admin" | "user";
+  sub: string;
+  exp: number;
+}
+
+interface UserData {
+  name: string;
   email: string;
   role: "admin" | "user";
 }
 
-export function getUser(): User | null {
-  // TODO
+export function getUser(): UserData | null {
+  const tokenCookie = cookies().get("token");
 
-  // const token = cookies().get('token')
+  if (!tokenCookie?.value) {
+    return null;
+  }
 
-  // if (!token) {
-  //     return null
-  // }
-
-  // const claims = getClaims(parseJwt(token))
-
-  // return {
-  //     username: claims.username,
-  //     email: claims.email,
-  //     role: claims.role
-  // }
+  const claims = jwtDecode<UserClaims>(tokenCookie.value);
 
   return {
-    username: "Alnur",
-    email: "alnurzhanibek@kazusa.kz",
-    role: "admin",
+    name: claims.name,
+    email: claims.sub,
+    role: claims.role,
   };
 }

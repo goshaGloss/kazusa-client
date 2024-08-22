@@ -3,34 +3,28 @@ export const dynamic = "force-dynamic";
 import { redirect } from "next/navigation";
 import { Input, Button } from "../components";
 import styles from "./index.module.css";
-import {
-  InternalHandlerLoginRequest,
-  InternalHandlerLoginResponse,
-} from "@/generated/models";
+import { HandlerLoginRequest, HandlerLoginResponse } from "@/generated/models";
 import { cookies } from "next/headers";
 
 export default function Page() {
   async function login(formData: FormData) {
     "use server";
-    const body: InternalHandlerLoginRequest = {};
+    const body: HandlerLoginRequest = {};
 
     body.email = String(formData.get("email"));
     body.password = String(formData.get("password"));
 
-    const raw = await fetch("/login", {
+    const raw = await fetch(`${process.env.BASE_URL}/login`, {
       method: "POST",
       body: JSON.stringify(body),
     });
 
-    const res: InternalHandlerLoginResponse = await raw.json();
+    const res: HandlerLoginResponse = await raw.json();
 
-    const token = res.ok; // lol
-
-    if (token) {
-      cookies().set("token", String(token));
+    if (res?.token) {
+      cookies().set("token", String(res.token));
+      redirect("/explore");
     }
-
-    redirect("/explore");
   }
 
   return (

@@ -1,7 +1,12 @@
 import Link from "next/link";
 import styles from "./header.module.css";
+import { getUser } from "@/app/utils/auth";
 
 export default function Header() {
+  const creds = getUser();
+
+  console.log(creds);
+
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Logo</h1>
@@ -20,12 +25,18 @@ export default function Header() {
         </ul>
       </nav>
       <div>
-        <Link href="/login" className={styles.link}>
-          Login
-        </Link>
-        <Link href="/register" className={styles.link}>
-          Register
-        </Link>
+        {creds ? (
+          creds.name
+        ) : (
+          <>
+            <Link href="/login" className={styles.link}>
+              Login
+            </Link>
+            <Link href="/register" className={styles.link}>
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import { getUser } from "./app/utils/auth";
 
 export function middleware(request: NextRequest) {

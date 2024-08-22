@@ -4,35 +4,33 @@ import { redirect } from "next/navigation";
 import { Input, Button } from "../components";
 import styles from "./index.module.css";
 import {
-  InternalHandlerRegisterRequest,
-  InternalHandlerRegisterResponse,
+  HandlerRegisterRequest,
+  HandlerRegisterResponse,
 } from "@/generated/models";
 import { cookies } from "next/headers";
 
 export default function Page() {
   async function register(formData: FormData) {
     "use server";
-    const body: InternalHandlerRegisterRequest = {};
+    const body: HandlerRegisterRequest = {};
 
     body.name = String(formData.get("name"));
     body.email = String(formData.get("email"));
     body.password = String(formData.get("password"));
     body.passwordConfirmation = String(formData.get("repeat-password"));
 
-    const raw = await fetch("/register", {
+    const raw = await fetch(`${process.env.BASE_URL}/register`, {
       method: "POST",
       body: JSON.stringify(body),
     });
 
-    const res: InternalHandlerRegisterResponse = await raw.json();
+    const res: HandlerRegisterResponse = await raw.json();
 
-    const token = res.ok; // lol
+    if (res.token) {
+      cookies().set("token", res.token);
 
-    if (token) {
-      cookies().set("token", String(token));
+      redirect("/explore");
     }
-
-    redirect("/explore");
   }
 
   return (

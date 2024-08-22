@@ -124,7 +124,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.LoginRequest"
+                            "$ref": "#/definitions/handler.LoginRequest"
                         }
                     }
                 ],
@@ -132,13 +132,13 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.LoginResponse"
+                            "$ref": "#/definitions/handler.LoginResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.LoginResponse"
+                            "$ref": "#/definitions/handler.LoginResponse"
                         }
                     }
                 }
@@ -218,7 +218,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.RegisterRequest"
+                            "$ref": "#/definitions/handler.RegisterRequest"
                         }
                     }
                 ],
@@ -226,13 +226,13 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.RegisterResponse"
+                            "$ref": "#/definitions/handler.RegisterResponse"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/internal_handler.RegisterResponse"
+                            "$ref": "#/definitions/handler.RegisterResponse"
                         }
                     }
                 }
@@ -352,7 +352,7 @@
                 }
             }
         },
-        "internal_handler.LoginRequest": {
+        "handler.LoginRequest": {
             "type": "object",
             "properties": {
                 "email": {
@@ -363,18 +363,18 @@
                 }
             }
         },
-        "internal_handler.LoginResponse": {
+        "handler.LoginResponse": {
             "type": "object",
             "properties": {
                 "error": {
                     "type": "string"
                 },
-                "ok": {
-                    "type": "boolean"
+                "token": {
+                    "type": "string"
                 }
             }
         },
-        "internal_handler.RegisterRequest": {
+        "handler.RegisterRequest": {
             "type": "object",
             "properties": {
                 "email": {
@@ -394,14 +394,14 @@
                 }
             }
         },
-        "internal_handler.RegisterResponse": {
+        "handler.RegisterResponse": {
             "type": "object",
             "properties": {
                 "error": {
                     "type": "string"
                 },
-                "ok": {
-                    "type": "boolean"
+                "token": {
+                    "type": "string"
                 }
             }
         }

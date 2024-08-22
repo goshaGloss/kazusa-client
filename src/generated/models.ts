@@ -42,17 +42,17 @@ export interface NewModule {
   name: string;
 }
 
-export interface InternalHandlerLoginRequest {
+export interface HandlerLoginRequest {
   email?: string;
   password?: string;
 }
 
-export interface InternalHandlerLoginResponse {
+export interface HandlerLoginResponse {
   error?: string;
-  ok?: boolean;
+  token?: string;
 }
 
-export interface InternalHandlerRegisterRequest {
+export interface HandlerRegisterRequest {
   email?: string;
   name?: string;
   password?: string;
@@ -60,7 +60,7 @@ export interface InternalHandlerRegisterRequest {
   phone?: string;
 }
 
-export interface InternalHandlerRegisterResponse {
+export interface HandlerRegisterResponse {
   error?: string;
-  ok?: boolean;
+  token?: string;
 }
