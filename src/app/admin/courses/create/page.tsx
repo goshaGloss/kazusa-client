@@ -33,7 +33,11 @@ export default function Page() {
         <h2 className={styles.heading}>Create Course</h2>
         <Input type="text" name="title" placeholder="Title" />
         <Input type="number" name="price" placeholder="Price" />
-        <Textarea name="description" placeholder="Description" />
+        <Textarea
+          name="description"
+          placeholder="Description"
+          style={{ flexGrow: 1 }}
+        />
         <Button type="submit">Create</Button>
       </div>
     </form>

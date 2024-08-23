@@ -5,6 +5,7 @@ import Table from "@/app/components/table/table";
 import Pagination from "@/app/components/pagination/pagination";
 import { Course } from "@/generated/models";
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
 async function getCourses({
   limit,
@@ -53,7 +54,13 @@ export default async function CourseList({ searchParams }: ICoursePageProps) {
   return (
     <div className={styles.courseList}>
       <div className={styles.courseContainer}>
-        <p className={styles.courseContainerTitle}>Course List</p>
+        <header className={styles.courseContainerHeader}>
+          <div className="spacer"></div>
+          <p className={styles.courseContainerTitle}>Course List</p>
+          <div className={styles.actionsWrapper}>
+            <Link href="courses/create">Create</Link>
+          </div>
+        </header>
         <Table
           updateUrl="courses"
           onDelete={deleteCourse}

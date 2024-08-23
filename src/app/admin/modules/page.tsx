@@ -5,6 +5,7 @@ import Table from "@/app/components/table/table";
 import Pagination from "@/app/components/pagination/pagination";
 import { Module } from "@/generated/models";
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
 async function getModules({
   limit,
@@ -53,7 +54,13 @@ export default async function ModuleList({ searchParams }: IModulePageProps) {
   return (
     <div className={styles.courseList}>
       <div className={styles.courseContainer}>
-        <p className={styles.courseContainerTitle}>Module List</p>
+        <header className={styles.courseContainerHeader}>
+          <div className="spacer"></div>
+          <p className={styles.courseContainerTitle}>Module List</p>
+          <div className={styles.actionsWrapper}>
+            <Link href="modules/create">Create</Link>
+          </div>
+        </header>
         <Table
           updateUrl="modules"
           onDelete={deleteModule}

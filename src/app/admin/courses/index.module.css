@@ -18,6 +18,18 @@
   font-size: 36px;
   font-weight: 700;
   line-height: 43px;
-  margin-bottom: 48px;
+  margin-bottom: 0px;
   text-align: center;
+}
+
+.courseContainerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.actionsWrapper {
+  display: flex;
+  align-items: center;
 }

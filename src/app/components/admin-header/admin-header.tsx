@@ -4,7 +4,9 @@ import styles from "./admin-header.module.css";
 export default function AdminHeader() {
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>Logo</h1>
+      <Link className={styles.title} href="/explore">
+        Logo
+      </Link>
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
