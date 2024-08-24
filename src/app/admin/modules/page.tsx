@@ -50,7 +50,7 @@ export default async function ModuleList({ searchParams }: IModulePageProps) {
     }
   };
 
-  const columns = Object.keys(modules[0] || {}) as (keyof Module)[];
+  const columns = ["name", "order", "durationMinutes"] as (keyof Module)[];
   return (
     <div className={styles.courseList}>
       <div className={styles.courseContainer}>

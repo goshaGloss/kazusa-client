@@ -50,7 +50,7 @@ export default async function CourseList({ searchParams }: ICoursePageProps) {
     }
   };
 
-  const columns = Object.keys(courses[0] || {}) as (keyof Course)[];
+  const columns = ["title", "price"] as (keyof Course)[];
   return (
     <div className={styles.courseList}>
       <div className={styles.courseContainer}>

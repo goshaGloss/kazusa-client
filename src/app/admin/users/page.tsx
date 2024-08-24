@@ -49,7 +49,7 @@ export default async function UserList({ searchParams }: IUserPageProps) {
     }
   };
 
-  const columns = Object.keys(users[0] || {}) as (keyof User)[];
+  const columns = ["name", "email", "phone", "role"] as (keyof User)[];
 
   return (
     <div className={styles.courseList}>
