@@ -35,7 +35,7 @@ export default function Editor(props: IAllProps) {
         toolbar:
           "undo redo | blocks | " +
           "bold italic forecolor | alignleft aligncenter " +
-          "alignright alignjustify | bullist numlist outdent indent | pageembed |" +
+          "alignright alignjustify | bullist numlist outdent indent | image | pageembed |" +
           "removeformat | help",
         content_style:
           "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
