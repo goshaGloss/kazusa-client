@@ -7,6 +7,10 @@
 .courseSyllabus {
   width: 500px;
   border: 1px solid var(--border-color);
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .courseSyllabusItem {

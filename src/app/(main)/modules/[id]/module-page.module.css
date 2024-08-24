@@ -13,6 +13,11 @@
   height: 700px;
   width: 700px;
   overflow: auto;
+
+  @media (max-width: 768px) {
+    min-width: 350px;
+    width: 100%;
+  }
 }
 
 .moduleControls {

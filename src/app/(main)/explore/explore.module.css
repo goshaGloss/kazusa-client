@@ -3,6 +3,10 @@
   margin: 0 auto;
   padding: 40px;
   flex-grow: 1;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .banner {
@@ -13,10 +17,17 @@
   font-weight: 700;
   line-height: 58px;
   color: var(--white-0);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 .courseGrid {
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-gap: 24px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
