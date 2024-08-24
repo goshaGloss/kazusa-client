@@ -33,6 +33,7 @@ export interface Module {
   durationMinutes: number;
   id: string;
   name: string;
+  order: number;
   updatedAt?: string;
 }
 
@@ -41,6 +42,7 @@ export interface ModuleUpdateBody {
   durationMinutes?: number;
   id: string;
   name?: string;
+  order?: number;
 }
 
 export interface NewCourse {
@@ -54,6 +56,7 @@ export interface NewModule {
   courseId: string;
   durationMinutes: number;
   name: string;
+  order: number;
 }
 
 export interface NewUser {

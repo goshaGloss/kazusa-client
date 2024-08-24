@@ -24,6 +24,7 @@ export default async function Page() {
       name: formData.get("name"),
       courseId: formData.get("courseId"),
       content: formData.get("content"),
+      order: Number(formData.get("order")),
       durationMinutes: Number(formData.get("durationMinutes")),
     };
 
@@ -52,11 +53,8 @@ export default async function Page() {
               </option>
             ))}
         </select>
-        <Input
-          type="durationMinutes"
-          name="durationMinutes"
-          placeholder="Duration"
-        />
+        <Input type="number" name="order" placeholder="Order" />
+        <Input type="number" name="durationMinutes" placeholder="Duration" />
         <Editor textareaName="content" />
         <Button type="submit">Create</Button>
       </div>

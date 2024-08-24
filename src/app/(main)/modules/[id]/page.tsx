@@ -11,7 +11,9 @@ type ModulePageParams = {
 };
 
 async function getModule(id: string): Promise<Module[]> {
-  const res = await fetch(`${process.env.BASE_URL}/module?id=${encodeURIComponent(id)}`);
+  const res = await fetch(
+    `${process.env.BASE_URL}/module?id=${encodeURIComponent(id)}`,
+  );
 
   return res.json();
 }
@@ -31,28 +33,28 @@ export default async function ModulePage({ params }: ModulePageParams) {
   const courseModules = await getModules(moduleData.courseId);
 
   const foundModuleIndex = courseModules.findIndex(
-    (module) => module.id === moduleData.id,
+    (mdl) => mdl.id === moduleData.id,
   );
 
-  const prevId = foundModuleIndex - 1;
-  const nextId = foundModuleIndex + 1;
+  const prevIndex = foundModuleIndex - 1;
+  const nextIndex = foundModuleIndex + 1;
 
-  const prevModuleId = prevId < 0 ? courseModules[prevId]?.id : null;
-  const nextModuleId =
-    nextId >= courseModules.length ? courseModules[nextId]?.id : null;
+  const prevId = prevIndex >= 0 ? courseModules[prevIndex]?.id : null;
+  const nextId =
+    nextIndex <= courseModules.length ? courseModules[nextIndex]?.id : null;
 
   return (
     <div className={styles.modulePage}>
       <div className={styles.moduleContent}>
         <div dangerouslySetInnerHTML={{ __html: moduleData.content }} />
         <div className={styles.moduleControls}>
-          {prevModuleId ? (
-            <Link href={`/modules/${prevModuleId || ""}`}>prev</Link>
+          {prevId ? (
+            <Link href={`/modules/${prevId || ""}`}>prev</Link>
           ) : (
             <div />
           )}
-          {nextModuleId ? (
-            <Link href={`/modules/${nextModuleId || ""}`}>next</Link>
+          {nextId ? (
+            <Link href={`/modules/${nextId || ""}`}>next</Link>
           ) : (
             <div />
           )}

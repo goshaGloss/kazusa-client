@@ -24,6 +24,7 @@ export default async function Page({ params }: { params: ModulePageParams }) {
       id: params.id,
       name: String(formData.get("name")),
       content: String(formData.get("content")),
+      order: Number(formData.get("order")),
       durationMinutes: Number(formData.get("durationMinutes")),
     };
 
@@ -49,6 +50,7 @@ export default async function Page({ params }: { params: ModulePageParams }) {
           name="name"
           placeholder="Name"
         />
+        <Input type="number" name="order" placeholder="Order" />
         <Input
           defaultValue={moduleData.durationMinutes}
           type="number"
