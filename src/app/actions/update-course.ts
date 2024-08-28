@@ -1,17 +1,26 @@
 "use server";
 
-import { NewCourse } from "@/generated/models";
+import { CourseUpdateBody } from "@/generated/models";
 import { redirect } from "next/navigation";
-import { CREATE_COURSE_SCHEMA } from "../validation/validation";
+import { UPDATE_COURSE_SCHEMA } from "../validation/validation";
 
-export async function createCourse(_prevState: any, formData: FormData) {
-  const body: NewCourse = { title: "", price: 0, description: "" };
+export default async function updateCourse(
+  _prevState: any,
+  formData: FormData,
+) {
+  const body: CourseUpdateBody = {
+    id: "",
+    title: "",
+    price: 0,
+    description: "",
+  };
 
+  body.id = String(formData.get("id"));
   body.title = String(formData.get("title"));
   body.price = Number(formData.get("price"));
   body.description = String(formData.get("description"));
 
-  const validatedFields = CREATE_COURSE_SCHEMA.safeParse(body);
+  const validatedFields = UPDATE_COURSE_SCHEMA.safeParse(body);
 
   if (!validatedFields.success) {
     return {
@@ -20,7 +29,7 @@ export async function createCourse(_prevState: any, formData: FormData) {
   }
 
   const raw = await fetch(`${process.env.BASE_URL}/course`, {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(body),
   });
 

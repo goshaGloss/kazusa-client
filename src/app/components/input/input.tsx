@@ -5,5 +5,5 @@ export const Input = forwardRef(function Input(
   props: InputHTMLAttributes<HTMLInputElement>,
   ref: Ref<HTMLInputElement>,
 ) {
-  return <input ref={ref} {...props} className={styles.input} />;
+  return <input ref={ref} className={styles.input} {...props} />;
 });

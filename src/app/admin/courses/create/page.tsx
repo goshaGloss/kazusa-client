@@ -1,43 +1,51 @@
-export const dynamic = "force-dynamic";
+"use client";
 
 import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
 import { Textarea } from "@/app/components/textarea/textarea";
-import { redirect } from "next/navigation";
+import { useFormState } from "react-dom";
+import { createCourse } from "@/app/actions/create-course";
+import { findError } from "@/app/utils/findError";
 
 export default function Page() {
-  async function createCourse(formData: FormData) {
-    "use server";
+  const [state, formAction] = useFormState(createCourse, { errors: [] });
 
-    const rawFormData = {
-      title: formData.get("title"),
-      price: Number(formData.get("price")),
-      description: formData.get("description"),
-    };
-
-    const raw = await fetch(`${process.env.BASE_URL}/course`, {
-      method: "POST",
-      body: JSON.stringify(rawFormData),
-    });
-
-    const res: boolean = await raw.json();
-
-    if (res) {
-      redirect("/admin/courses");
-    }
-  }
+  const titleError = findError(state?.errors, "title");
+  const priceError = findError(state?.errors, "price");
+  const descError = findError(state?.errors, "description");
 
   return (
-    <form action={createCourse} className={styles.wrapper}>
+    <form action={formAction} className={styles.wrapper}>
       <div className={styles.container}>
         <h2 className={styles.heading}>Create Course</h2>
-        <Input type="text" name="title" placeholder="Title" />
-        <Input type="number" name="price" placeholder="Price" />
-        <Textarea
-          name="description"
-          placeholder="Description"
-          style={{ flexGrow: 1 }}
-        />
+        <div>
+          <Input type="text" name="title" placeholder="Title" />
+          {titleError && titleError.length > 0 ? (
+            <p className={styles.errorText}>
+              {titleError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
+        <div>
+          <Input type="number" name="price" placeholder="Price" />
+          {priceError && priceError.length > 0 ? (
+            <p className={styles.errorText}>
+              {priceError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
+        <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+          <Textarea
+            name="description"
+            placeholder="Description"
+            style={{ flexGrow: 1 }}
+          />
+          {descError && descError.length > 0 ? (
+            <p className={styles.errorText}>
+              {descError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
         <Button type="submit">Create</Button>
       </div>
     </form>
