@@ -1,4 +1,5 @@
 .button {
+  position: relative;
   padding: 8px 24px;
   border-radius: 8px;
   background-color: rgba(var(--brand-green-rgb), 0.75);
@@ -10,8 +11,41 @@
   border: none;
   outline: none;
   cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button:hover {
   background-color: rgba(var(--brand-green-rgb), 1);
+}
+
+.button[data-loading="true"]::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--white-0);
+  z-index: 1;
+  animation: spin 1s linear infinite;
+}
+
+.button[data-loading="true"] {
+  background-color: rgba(var(--brand-green-rgb), 0.5);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button[data-loading="true"] p {
+  visibility: hidden; /* Hide button text */
 }
