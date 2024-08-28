@@ -1,50 +1,59 @@
-export const dynamic = "force-dynamic";
+"use client";
 
-import { redirect } from "next/navigation";
 import { Input, Button } from "@/app/components";
 import styles from "./index.module.css";
-import {
-  HandlerRegisterRequest,
-  HandlerRegisterResponse,
-} from "@/generated/models";
-import { cookies } from "next/headers";
+import { register } from "@/app/actions";
+import { useFormState } from "react-dom";
+import { findError } from "@/app/utils/findError";
 
 export default function Page() {
-  async function register(formData: FormData) {
-    "use server";
-    const body: HandlerRegisterRequest = {};
+  const [state, formAction] = useFormState(register, { errors: [] });
 
-    body.name = String(formData.get("name"));
-    body.email = String(formData.get("email"));
-    body.password = String(formData.get("password"));
-    body.passwordConfirmation = String(formData.get("repeat-password"));
-
-    const raw = await fetch(`${process.env.BASE_URL}/register`, {
-      method: "POST",
-      body: JSON.stringify(body),
-    });
-
-    const res: HandlerRegisterResponse = await raw.json();
-
-    if (res.token) {
-      cookies().set("token", res.token);
-
-      redirect("/explore");
-    }
-  }
+  const nameError = findError(state?.errors, "name");
+  const emailError = findError(state?.errors, "email");
+  const passwordError = findError(state?.errors, "password");
+  const passwordConfirmError = findError(state?.errors, "passwordConfirmation");
 
   return (
     <div className={styles.wrapper}>
-      <form className={styles.container} action={register}>
+      <form className={styles.container} action={formAction}>
         <h2 className={styles.heading}>Register</h2>
-        <Input name="name" type="text" placeholder="Name" />
-        <Input name="email" type="text" placeholder="Email" />
-        <Input name="password" type="password" placeholder="Password" />
-        <Input
-          name="repeat-password"
-          type="password"
-          placeholder="Repeat password"
-        />
+        <div>
+          <Input name="name" type="text" placeholder="Name" />
+          {nameError && nameError.length > 0 ? (
+            <p className={styles.errorText}>
+              {nameError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
+        <div>
+          <Input name="email" type="text" placeholder="Email" />
+          {emailError && emailError.length > 0 ? (
+            <p className={styles.errorText}>
+              {emailError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
+        <div>
+          <Input name="password" type="password" placeholder="Password" />
+          {passwordError && passwordError.length > 0 ? (
+            <p className={styles.errorText}>
+              {passwordError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
+        <div>
+          <Input
+            name="repeat-password"
+            type="password"
+            placeholder="Repeat password"
+          />
+          {passwordConfirmError && passwordConfirmError.length > 0 ? (
+            <p className={styles.errorText}>
+              {passwordConfirmError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </div>
