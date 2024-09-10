@@ -6,12 +6,16 @@ import styles from "./course-page.module.css";
 import CourseSyllabus from "./components/course-syllabus/course-syllabus";
 import { Course } from "@/generated/models";
 import Link from "next/link";
+import { headers } from "next/headers";
 
 type CoursePageParams = { id: string };
 
 async function getCourse(id: string): Promise<Course[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/course?id=${id}&offset=0&limit=1`,
+    {
+      headers: headers(),
+    },
   );
 
   return res.json();

@@ -3,6 +3,9 @@ export const dynamic = "force-dynamic";
 import { Module } from "@/generated/models";
 import styles from "./module-page.module.css";
 import Link from "next/link";
+import { headers } from "next/headers";
+import { createActivity } from "@/app/actions/create-activity";
+import { getUser } from "@/app/utils/auth";
 
 type ModulePageParams = {
   params: {
@@ -13,6 +16,9 @@ type ModulePageParams = {
 async function getModule(id: string): Promise<Module[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/module?id=${encodeURIComponent(id)}`,
+    {
+      headers: headers(),
+    },
   );
 
   return res.json();
@@ -21,16 +27,29 @@ async function getModule(id: string): Promise<Module[]> {
 async function getModules(courseId: string): Promise<Module[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/module?course_id=${encodeURIComponent(courseId)}`,
+    {
+      headers: headers(),
+    },
   );
 
   return res.json();
 }
 
 export default async function ModulePage({ params }: ModulePageParams) {
+  const currentUser = getUser();
+
   const modulesData = await getModule(params.id);
   const moduleData = modulesData[0];
 
   const courseModules = await getModules(moduleData.courseId);
+
+  if (currentUser) {
+    await createActivity({
+      userId: currentUser.userId,
+      courseId: moduleData.courseId,
+      moduleId: moduleData.id,
+    });
+  }
 
   const foundModuleIndex = courseModules.findIndex(
     (mdl) => mdl.id === moduleData.id,

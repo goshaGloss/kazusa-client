@@ -1,11 +1,14 @@
 export const dynamic = "force-dynamic";
 import { Course, Module } from "@/generated/models";
 import Form from "./components/form";
+import { headers } from "next/headers";
 
 type ModulePageParams = { id: string };
 
 async function getModules(id: string): Promise<Module[]> {
-  const res = await fetch(`${process.env.BASE_URL}/module?id=${id}`);
+  const res = await fetch(`${process.env.BASE_URL}/module?id=${id}`, {
+    headers: headers(),
+  });
 
   return res.json();
 }

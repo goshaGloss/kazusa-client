@@ -6,9 +6,11 @@ interface UserClaims {
   role: "admin" | "user";
   sub: string;
   exp: number;
+  userId: string;
 }
 
 interface UserData {
+  userId: string;
   name: string;
   email: string;
   role: "admin" | "user";
@@ -24,6 +26,7 @@ export function getUser(): UserData | null {
   const claims = jwtDecode<UserClaims>(tokenCookie.value);
 
   return {
+    userId: claims.userId,
     name: claims.name,
     email: claims.sub,
     role: claims.role,

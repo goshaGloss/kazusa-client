@@ -6,6 +6,7 @@ import Pagination from "@/app/components/pagination/pagination";
 import { Module } from "@/generated/models";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
+import { headers } from "next/headers";
 
 async function getModules({
   limit,
@@ -16,6 +17,9 @@ async function getModules({
 }): Promise<Module[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/module?offset=${offset}&limit=${limit}`,
+    {
+      headers: headers(),
+    },
   );
 
   return res.json();

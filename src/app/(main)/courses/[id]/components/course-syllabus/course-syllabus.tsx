@@ -13,8 +13,11 @@ export default function CourseSyllabus({ syllabus }: CourseSyllabusProps) {
         {syllabus.map((syllabusItem, index) => (
           <SyllabusItem
             key={index}
+            id={syllabusItem.id}
             name={syllabusItem.name}
             durationMinutes={syllabusItem.durationMinutes}
+            isCompleted={syllabusItem.isCompleted}
+            isFirst={index === 0}
           />
         ))}
       </div>
