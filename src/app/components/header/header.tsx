@@ -4,6 +4,7 @@ import { getUser } from "@/app/utils/auth";
 import { Button } from "../button";
 import { cookies } from "next/headers";
 import {} from "next/cache";
+import Image from "next/image";
 
 export default function Header() {
   const creds = getUser();
@@ -16,7 +17,13 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link className={styles.title} href="/explore">
-        Logo
+        <Image
+          src="/logo.png"
+          width="150"
+          height="50"
+          style={{ objectFit: "cover" }}
+          alt="Logo"
+        />
       </Link>
       <nav className={styles.nav}>
         <ul className={styles.navList}>
