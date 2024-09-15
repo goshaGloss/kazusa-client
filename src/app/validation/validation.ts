@@ -36,6 +36,7 @@ export const LOGIN_SCHEMA = z.object({
 });
 
 export const CREATE_COURSE_SCHEMA = z.object({
+  cover: z.instanceof(File, { message: "Cover is required" }),
   title: z.string({ message: "Title is required" }).min(1, "Title is required"),
   price: z.number({ message: "Price is required" }).min(1),
   description: z

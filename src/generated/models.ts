@@ -10,6 +10,8 @@
  */
 
 export interface Course {
+  attachmentUrls?: string;
+  coverUrl: string;
   createdAt: string;
   description: string;
   id: string;
@@ -50,12 +52,6 @@ export interface NewActivity {
   courseId: string;
   moduleId: string;
   userId: string;
-}
-
-export interface NewCourse {
-  description: string;
-  price: number;
-  title: string;
 }
 
 export interface NewModule {

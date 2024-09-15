@@ -13,11 +13,25 @@ export default function Page() {
   const titleError = findError(state?.errors, "title");
   const priceError = findError(state?.errors, "price");
   const descError = findError(state?.errors, "description");
+  const coverError = findError(state?.errors, "cover");
 
   return (
     <form action={formAction} className={styles.wrapper}>
       <div className={styles.container}>
         <h2 className={styles.heading}>Create Course</h2>
+        <div>
+          <Input
+            type="file"
+            name="cover"
+            placeholder="Cover"
+            accept=".jpg,.jpeg,.png"
+          />
+          {coverError && coverError.length > 0 ? (
+            <p className={styles.errorText}>
+              {coverError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
         <div>
           <Input type="text" name="title" placeholder="Title" />
           {titleError && titleError.length > 0 ? (
@@ -45,6 +59,14 @@ export default function Page() {
               {descError.map((err) => err.message).join(", ")}
             </p>
           ) : null}
+        </div>
+        <div>
+          <Input
+            type="file"
+            name="attachments"
+            placeholder="Attachments"
+            multiple
+          />
         </div>
         <Button type="submit">Create</Button>
       </div>

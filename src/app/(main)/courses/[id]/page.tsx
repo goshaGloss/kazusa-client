@@ -35,6 +35,27 @@ export default async function CoursePage({
         <div className={styles.coursePageLeft}>
           <p className={styles.courseTitle}>{course.title}</p>
           <p className={styles.courseDescription}>{course.description}</p>
+          {course.attachmentUrls &&
+          JSON.parse(course.attachmentUrls).attachment_urls
+            ? JSON.parse(course.attachmentUrls).attachment_urls.map(
+                (attachmentUrl: string, index: number) => {
+                  const attachmentUrlTitle =
+                    attachmentUrl.split("/")[
+                      attachmentUrl.split("/").length - 1
+                    ];
+                  return (
+                    <p key={index}>
+                      <Link
+                        className={styles.courseAttachment}
+                        href={attachmentUrl}
+                      >
+                        {attachmentUrlTitle}
+                      </Link>
+                    </p>
+                  );
+                },
+              )
+            : null}
           {course?.modules?.length ? (
             <CourseSyllabus syllabus={course.modules || []} />
           ) : null}
@@ -43,7 +64,7 @@ export default async function CoursePage({
           <div className={styles.coursePageImage}>
             <Image
               alt={`course-image-${params.id}`}
-              src={""}
+              src={course.coverUrl}
               objectFit="cover"
               fill
             />
