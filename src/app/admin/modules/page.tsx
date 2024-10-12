@@ -18,7 +18,7 @@ async function getModules({
   const res = await fetch(
     `${process.env.BASE_URL}/module?offset=${offset}&limit=${limit}`,
     {
-      headers: headers(),
+      headers: new Headers(headers()),
     },
   );
 

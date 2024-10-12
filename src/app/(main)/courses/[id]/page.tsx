@@ -14,7 +14,7 @@ async function getCourse(id: string): Promise<Course[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/course?id=${id}&offset=0&limit=1`,
     {
-      headers: headers(),
+      headers: new Headers(headers()),
     },
   );
 

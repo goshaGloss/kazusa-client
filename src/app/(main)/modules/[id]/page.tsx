@@ -17,7 +17,7 @@ async function getModule(id: string): Promise<Module[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/module?id=${encodeURIComponent(id)}`,
     {
-      headers: headers(),
+      headers: new Headers(headers()),
     },
   );
 
@@ -28,7 +28,7 @@ async function getModules(courseId: string): Promise<Module[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/module?course_id=${encodeURIComponent(courseId)}`,
     {
-      headers: headers(),
+      headers: new Headers(headers()),
     },
   );
 

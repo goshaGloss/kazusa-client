@@ -7,7 +7,7 @@ type ModulePageParams = { id: string };
 
 async function getModules(id: string): Promise<Module[]> {
   const res = await fetch(`${process.env.BASE_URL}/module?id=${id}`, {
-    headers: headers(),
+    headers: new Headers(headers()),
   });
 
   return res.json();
