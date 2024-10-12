@@ -29,6 +29,11 @@ export default async function CoursePage({
   const courses = await getCourse(params.id);
   const course = courses[0];
 
+  const duration = Math.ceil(
+    (course?.modules?.reduce((acc, mod) => acc + mod.durationMinutes, 0) ||
+      60) / 60,
+  );
+
   return (
     <div className={styles.coursePage}>
       <div className={styles.courseContent}>
@@ -71,7 +76,7 @@ export default async function CoursePage({
           </div>
           <div className={styles.courseInfo}>
             <p className={styles.courseInfoText}>Price: {course.price}</p>
-            <p className={styles.courseInfoText}>Duration: 10h</p>
+            <p className={styles.courseInfoText}>Duration: {duration}h</p>
             {course?.modules?.length ? (
               <Button>
                 <Link
