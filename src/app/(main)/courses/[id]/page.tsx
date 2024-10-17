@@ -77,7 +77,7 @@ export default async function CoursePage({
           <div className={styles.courseInfo}>
             <p className={styles.courseInfoText}>Price: {course.price}</p>
             <p className={styles.courseInfoText}>Duration: {duration}h</p>
-            {course?.modules?.length ? (
+            {course?.modules?.length && course.isPaid ? (
               <Button>
                 <Link
                   style={{ textDecoration: "none", color: "#fff" }}

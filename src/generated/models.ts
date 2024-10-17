@@ -15,6 +15,7 @@ export interface Course {
   createdAt: string;
   description: string;
   id: string;
+  isPaid?: boolean;
   modules?: Module[];
   price: number;
   title: string;
