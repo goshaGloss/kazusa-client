@@ -61,7 +61,7 @@ export default async function CoursePage({
                 },
               )
             : null}
-          {course?.modules?.length ? (
+          {course?.modules?.length && course.isPaid ? (
             <CourseSyllabus syllabus={course.modules || []} />
           ) : null}
         </div>
@@ -86,7 +86,11 @@ export default async function CoursePage({
                   Get started
                 </Link>
               </Button>
-            ) : null}
+            ) : (
+              <Link target="_blank" href="https://wa.me/+77776664933">
+                Contact Admin
+              </Link>
+            )}
           </div>
         </div>
       </div>
