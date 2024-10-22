@@ -64,8 +64,11 @@ export default async function CoursePage({
                 },
               )
             : null}
-          {course?.modules?.length && course.isPaid ? (
-            <CourseSyllabus syllabus={course.modules || []} />
+          {course?.modules?.length ? (
+            <CourseSyllabus
+              syllabus={course.modules || []}
+              isInteractive={course.isPaid || currentUser?.role === "admin"}
+            />
           ) : null}
         </div>
         <div className={styles.coursePageRight}>

@@ -4,9 +4,13 @@ import SyllabusItem from "../course-syllabus/syllabus-item";
 
 type CourseSyllabusProps = {
   syllabus: Module[];
+  isInteractive: boolean;
 };
 
-export default function CourseSyllabus({ syllabus }: CourseSyllabusProps) {
+export default function CourseSyllabus({
+  syllabus,
+  isInteractive,
+}: CourseSyllabusProps) {
   return (
     <div className={styles.courseSyllabusWrapper}>
       <div className={styles.courseSyllabus}>
@@ -18,6 +22,7 @@ export default function CourseSyllabus({ syllabus }: CourseSyllabusProps) {
             durationMinutes={syllabusItem.durationMinutes}
             isCompleted={syllabusItem.isCompleted}
             isFirst={index === 0}
+            isInteractive={isInteractive}
           />
         ))}
       </div>

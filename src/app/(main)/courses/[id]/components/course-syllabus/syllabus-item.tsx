@@ -4,6 +4,7 @@ import Link from "next/link";
 
 type TSyllabusItemProps = {
   isFirst: boolean;
+  isInteractive: boolean;
 } & Pick<Module, "name" | "durationMinutes" | "isCompleted" | "id">;
 
 export default function SyllabusItem({
@@ -12,7 +13,15 @@ export default function SyllabusItem({
   durationMinutes,
   isCompleted,
   isFirst,
+  isInteractive,
 }: TSyllabusItemProps) {
+  if (!isInteractive) {
+    <div className={styles.courseSyllabusItem}>
+      <p className={styles.courseSyllabusItemTitle}>{name}</p>
+      <p className={styles.courseSyllabusItemMinutes}>{durationMinutes} min.</p>
+    </div>;
+  }
+
   return (
     <div className={styles.courseSyllabusItem}>
       {isFirst || isCompleted ? (
