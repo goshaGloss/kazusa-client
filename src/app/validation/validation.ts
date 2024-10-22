@@ -74,9 +74,6 @@ export const UPDATE_MODULE_SCHEMA = z.object({
   content: z
     .string({ message: "Content is required" })
     .min(1, "Content is required"),
-  courseId: z
-    .string({ message: "Course is required" })
-    .min(1, "Course is required"),
   durationMinutes: z
     .number({ message: "Duration of the course is required" })
     .min(1, "Duration of the course is required"),

@@ -5,20 +5,18 @@ import Editor from "@/app/components/editor/editor";
 import { findError } from "@/app/utils/findError";
 import styles from "./index.module.css";
 import { useFormState } from "react-dom";
-import { Course, Module } from "@/generated/models";
+import { Module } from "@/generated/models";
 import updateModule from "@/app/actions/update-module";
 
 interface IFormProps {
   moduleData: Module;
-  courses: Course[];
 }
 
-export default function Form({ moduleData, courses }: IFormProps) {
+export default function Form({ moduleData }: IFormProps) {
   const [state, formAction] = useFormState(updateModule, { errors: [] });
 
   const nameError = findError(state?.errors, "name");
   const contentError = findError(state?.errors, "content");
-  const courseError = findError(state?.errors, "courseId");
   const durationError = findError(state?.errors, "durationMinutes");
   const orderError = findError(state?.errors, "order");
 
@@ -45,21 +43,6 @@ export default function Form({ moduleData, courses }: IFormProps) {
               {nameError.map((err) => err.message).join(", ")}
             </p>
           ) : null}
-        </div>
-        <div>
-          <select name="courseId" defaultValue={moduleData.id}>
-            {courses &&
-              courses.map((course) => (
-                <option key={course.id} value={course.id}>
-                  {course.title}
-                </option>
-              ))}
-            {courseError && courseError.length > 0 ? (
-              <p className={styles.errorText}>
-                {courseError.map((err) => err.message).join(", ")}
-              </p>
-            ) : null}
-          </select>
         </div>
         <div>
           <Input
