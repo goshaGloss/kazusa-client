@@ -16,7 +16,7 @@ async function getCourse(id: string): Promise<Course[]> {
     `${process.env.BASE_URL}/course?id=${id}&offset=0&limit=1`,
     {
       headers: new Headers(headers()),
-      cache: "no-cache",
+      cache: "no-store",
     },
   );
 
