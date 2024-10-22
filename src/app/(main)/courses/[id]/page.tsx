@@ -7,6 +7,7 @@ import CourseSyllabus from "./components/course-syllabus/course-syllabus";
 import { Course } from "@/generated/models";
 import Link from "next/link";
 import { headers } from "next/headers";
+import { getUser } from "@/app/utils/auth";
 
 type CoursePageParams = { id: string };
 
@@ -26,6 +27,8 @@ export default async function CoursePage({
 }: {
   params: CoursePageParams;
 }) {
+  const currentUser = getUser();
+
   const courses = await getCourse(params.id);
   const course = courses[0];
 
@@ -77,7 +80,8 @@ export default async function CoursePage({
           <div className={styles.courseInfo}>
             <p className={styles.courseInfoText}>Price: {course.price}</p>
             <p className={styles.courseInfoText}>Duration: {duration}h</p>
-            {course?.modules?.length && course.isPaid ? (
+            {course?.modules?.length &&
+            (course.isPaid || currentUser?.role === "admin") ? (
               <Button>
                 <Link
                   style={{ textDecoration: "none", color: "#fff" }}
@@ -86,6 +90,8 @@ export default async function CoursePage({
                   Get started
                 </Link>
               </Button>
+            ) : currentUser?.role === "admin" ? (
+              <p className={styles.courseInfoText}>No modules yet</p>
             ) : (
               <Link target="_blank" href="https://wa.me/+77776664933">
                 Contact Admin
