@@ -16,10 +16,14 @@ export default function SyllabusItem({
   isInteractive,
 }: TSyllabusItemProps) {
   if (!isInteractive) {
-    <div className={styles.courseSyllabusItem}>
-      <p className={styles.courseSyllabusItemTitle}>{name}</p>
-      <p className={styles.courseSyllabusItemMinutes}>{durationMinutes} min.</p>
-    </div>;
+    return (
+      <div className={styles.courseSyllabusItem}>
+        <p className={styles.courseSyllabusItemTitle}>{name}</p>
+        <p className={styles.courseSyllabusItemMinutes}>
+          {durationMinutes} min.
+        </p>
+      </div>
+    );
   }
 
   return (
