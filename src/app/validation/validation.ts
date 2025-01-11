@@ -3,8 +3,11 @@ import { z } from "zod";
 export const REGISTER_SCHEMA = z
   .object({
     name: z
-      .string({ message: "Username is required" })
-      .min(1, { message: "Username is required" }),
+      .string({ message: "Name is required" })
+      .min(1, { message: "Name is required" }),
+    lastname: z
+      .string({ message: "Lastname is required" })
+      .min(1, { message: "Lastname is required" }),
     email: z
       .string({ message: "Email is required" })
       .email({ message: "Email is invalid" }),
@@ -13,13 +16,13 @@ export const REGISTER_SCHEMA = z
       .regex(/^(?=.*\d).{8,}$/, {
         message: "Password should contain atleas 8 characters and a number",
       }),
-    passwordConfirmation: z
+    "repeat-password": z
       .string({ message: "Password confirmation is required" })
       .regex(/^(?=.*\d).{8,}$/, {
         message: "Password should contain atleas 8 characters and a number",
       }),
   })
-  .refine((data) => data.password === data.passwordConfirmation, {
+  .refine((data) => data.password === data["repeat-password"], {
     message: "Passwords don't match",
     path: ["passwordConfirmation"], // path of error
   });

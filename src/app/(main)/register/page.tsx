@@ -10,6 +10,7 @@ export default function Page() {
   const [state, formAction] = useActionState(register, { errors: [] });
 
   const nameError = findError(state?.errors, "name");
+  const lastnameError = findError(state?.errors, "lastname");
   const emailError = findError(state?.errors, "email");
   const passwordError = findError(state?.errors, "password");
   const passwordConfirmError = findError(state?.errors, "passwordConfirmation");
@@ -23,6 +24,14 @@ export default function Page() {
           {nameError && nameError.length > 0 ? (
             <p className={styles.errorText}>
               {nameError.map((err) => err.message).join(", ")}
+            </p>
+          ) : null}
+        </div>
+        <div>
+          <Input name="lastname" type="text" placeholder="Lastname" />
+          {lastnameError && lastnameError.length > 0 ? (
+            <p className={styles.errorText}>
+              {lastnameError.map((err) => err.message).join(", ")}
             </p>
           ) : null}
         </div>
