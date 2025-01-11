@@ -1,13 +1,13 @@
 "use client";
 
+import { useActionState } from "react";
 import { Input, Button } from "@/app/components";
 import styles from "./index.module.css";
 import { register } from "@/app/actions";
-import { useFormState } from "react-dom";
 import { findError } from "@/app/utils/findError";
 
 export default function Page() {
-  const [state, formAction] = useFormState(register, { errors: [] });
+  const [state, formAction] = useActionState(register, { errors: [] });
 
   const nameError = findError(state?.errors, "name");
   const emailError = findError(state?.errors, "email");

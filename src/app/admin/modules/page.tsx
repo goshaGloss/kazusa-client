@@ -18,7 +18,7 @@ async function getModules({
   const res = await fetch(
     `${process.env.BASE_URL}/module?offset=${offset}&limit=${limit}`,
     {
-      headers: new Headers(headers()),
+      headers: new Headers(await headers()),
     },
   );
 
@@ -26,13 +26,14 @@ async function getModules({
 }
 
 interface IModulePageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     offset?: string;
     limit?: string;
-  };
+  }>;
 }
 
-export default async function ModuleList({ searchParams }: IModulePageProps) {
+export default async function ModuleList(props: IModulePageProps) {
+  const searchParams = await props.searchParams;
   const offset = Number(searchParams?.offset) || 0;
   const limit = Number(searchParams?.limit) || 20;
   const modules = await getModules({

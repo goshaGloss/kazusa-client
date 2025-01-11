@@ -11,7 +11,8 @@ async function getCourse(id: string): Promise<Course[]> {
   return res.json();
 }
 
-export default async function Page({ params }: { params: CoursePageParams }) {
+export default async function Page(props: { params: Promise<CoursePageParams> }) {
+  const params = await props.params;
   const courses = await getCourse(params.id);
   const course = courses[0];
 

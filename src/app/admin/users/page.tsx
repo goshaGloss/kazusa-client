@@ -21,13 +21,14 @@ async function getUsers({
 }
 
 interface IUserPageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     offset?: string;
     limit?: string;
-  };
+  }>;
 }
 
-export default async function UserList({ searchParams }: IUserPageProps) {
+export default async function UserList(props: IUserPageProps) {
+  const searchParams = await props.searchParams;
   const offset = Number(searchParams?.offset) || 0;
   const limit = Number(searchParams?.limit) || 20;
   const users = await getUsers({

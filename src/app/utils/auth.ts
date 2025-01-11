@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 
 interface UserClaims {
@@ -17,7 +17,7 @@ interface UserData {
 }
 
 export function getUser(): UserData | null {
-  const tokenCookie = cookies().get("token");
+  const tokenCookie = (cookies() as unknown as UnsafeUnwrappedCookies).get("token");
 
   if (!tokenCookie?.value) {
     return null;

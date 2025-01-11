@@ -1,19 +1,19 @@
 "use client";
 
+import { useActionState } from "react";
 import { Button, Input } from "@/app/components";
 import Editor from "@/app/components/editor/editor";
 import { findError } from "@/app/utils/findError";
 import { Course } from "@/generated/models";
 import styles from "./index.module.css";
 import { createModule } from "@/app/actions/create-module";
-import { useFormState } from "react-dom";
 
 interface IFormProps {
   courses: Course[];
 }
 
 export default function Form({ courses }: IFormProps) {
-  const [state, formAction] = useFormState(createModule, { errors: [] });
+  const [state, formAction] = useActionState(createModule, { errors: [] });
 
   const nameError = findError(state?.errors, "name");
   const contentError = findError(state?.errors, "content");

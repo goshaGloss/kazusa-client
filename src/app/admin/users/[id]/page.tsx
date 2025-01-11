@@ -15,7 +15,8 @@ async function getUser(id: string): Promise<User[]> {
   return res.json();
 }
 
-export default async function Page({ params }: { params: UserPageParams }) {
+export default async function Page(props: { params: Promise<UserPageParams> }) {
+  const params = await props.params;
   const users = await getUser(params.id);
   const user = users[0];
   async function updateUser(formData: FormData) {

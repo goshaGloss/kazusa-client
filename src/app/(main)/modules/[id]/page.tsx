@@ -8,16 +8,16 @@ import { createActivity } from "@/app/actions/create-activity";
 import { getUser } from "@/app/utils/auth";
 
 type ModulePageParams = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function getModule(id: string): Promise<Module[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/module?id=${encodeURIComponent(id)}`,
     {
-      headers: new Headers(headers()),
+      headers: new Headers(await headers()),
     },
   );
 
@@ -28,14 +28,15 @@ async function getModules(courseId: string): Promise<Module[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/module?course_id=${encodeURIComponent(courseId)}`,
     {
-      headers: new Headers(headers()),
+      headers: new Headers(await headers()),
     },
   );
 
   return res.json();
 }
 
-export default async function ModulePage({ params }: ModulePageParams) {
+export default async function ModulePage(props: ModulePageParams) {
+  const params = await props.params;
   const currentUser = getUser();
 
   const modulesData = await getModule(params.id);

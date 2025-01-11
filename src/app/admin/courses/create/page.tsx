@@ -1,14 +1,14 @@
 "use client";
 
+import { useActionState } from "react";
 import { Button, Input } from "@/app/components";
 import styles from "./index.module.css";
 import { Textarea } from "@/app/components/textarea/textarea";
-import { useFormState } from "react-dom";
 import { createCourse } from "@/app/actions/create-course";
 import { findError } from "@/app/utils/findError";
 
 export default function Page() {
-  const [state, formAction] = useFormState(createCourse, { errors: [] });
+  const [state, formAction] = useActionState(createCourse, { errors: [] });
 
   const titleError = findError(state?.errors, "title");
   const priceError = findError(state?.errors, "price");

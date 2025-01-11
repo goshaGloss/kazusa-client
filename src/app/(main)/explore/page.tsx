@@ -22,13 +22,14 @@ async function getCourses({
 }
 
 interface IExplorePageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     offset?: string;
     limit?: string;
-  };
+  }>;
 }
 
-export default async function ExplorePage({ searchParams }: IExplorePageProps) {
+export default async function ExplorePage(props: IExplorePageProps) {
+  const searchParams = await props.searchParams;
   const offset = Number(searchParams?.offset) || 0;
   const limit = Number(searchParams?.limit) || 20;
   const courses = await getCourses({

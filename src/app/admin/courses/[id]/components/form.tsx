@@ -1,9 +1,9 @@
 "use client";
 
+import { useActionState } from "react";
 import { Button, Input } from "@/app/components";
 import { findError } from "@/app/utils/findError";
 import styles from "./index.module.css";
-import { useFormState } from "react-dom";
 import { Course } from "@/generated/models";
 import { Textarea } from "@/app/components/textarea/textarea";
 import updateCourse from "@/app/actions/update-course";
@@ -13,7 +13,7 @@ interface IFormProps {
 }
 
 export default function Form({ courseData }: IFormProps) {
-  const [state, formAction] = useFormState(updateCourse, { errors: [] });
+  const [state, formAction] = useActionState(updateCourse, { errors: [] });
 
   const titleError = findError(state?.errors, "title");
   const priceError = findError(state?.errors, "price");

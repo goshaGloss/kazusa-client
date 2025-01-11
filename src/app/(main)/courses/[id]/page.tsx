@@ -15,7 +15,7 @@ async function getCourse(id: string): Promise<Course[]> {
   const res = await fetch(
     `${process.env.BASE_URL}/course?id=${id}&offset=0&limit=1`,
     {
-      headers: new Headers(headers()),
+      headers: new Headers(await headers()),
       cache: "no-store",
     },
   );
@@ -23,11 +23,12 @@ async function getCourse(id: string): Promise<Course[]> {
   return res.json();
 }
 
-export default async function CoursePage({
-  params,
-}: {
-  params: CoursePageParams;
-}) {
+export default async function CoursePage(
+  props: {
+    params: Promise<CoursePageParams>;
+  }
+) {
+  const params = await props.params;
   const currentUser = getUser();
 
   const courses = await getCourse(params.id);

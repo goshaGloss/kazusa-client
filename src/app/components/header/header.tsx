@@ -11,7 +11,7 @@ export default function Header() {
 
   const logout = async () => {
     "use server";
-    cookies().delete("token");
+    (await cookies()).delete("token");
   };
 
   return (

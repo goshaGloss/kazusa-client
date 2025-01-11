@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -22,21 +22,20 @@
     "@tinymce/tinymce-react": "^5.1.1",
     "@types/tinymce": "^4.6.9",
     "jwt-decode": "^4.0.0",
-    "next": "14.1.4",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "15.1.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-hook-form": "^7.52.1",
-    "swr": "^2.2.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "19.0.4",
+    "@types/react-dom": "19.0.2",
     "axios": "^1.7.2",
     "eslint": "^8",
-    "eslint-config-next": "14.1.4",
+    "eslint-config-next": "15.1.4",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.2",
@@ -44,5 +43,9 @@
     "prettier": "^3.2.5",
     "swagger-typescript-api": "^13.0.13",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.0.4",
+    "@types/react-dom": "19.0.2"
   }
 }
