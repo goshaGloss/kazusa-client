@@ -23,11 +23,9 @@ async function getCourse(id: string): Promise<Course[]> {
   return res.json();
 }
 
-export default async function CoursePage(
-  props: {
-    params: Promise<CoursePageParams>;
-  }
-) {
+export default async function CoursePage(props: {
+  params: Promise<CoursePageParams>;
+}) {
   const params = await props.params;
   const currentUser = getUser();
 
@@ -45,33 +43,35 @@ export default async function CoursePage(
         <div className={styles.coursePageLeft}>
           <p className={styles.courseTitle}>{course.title}</p>
           <p className={styles.courseDescription}>{course.description}</p>
-          {course.attachmentUrls &&
-          JSON.parse(course.attachmentUrls).attachment_urls
-            ? JSON.parse(course.attachmentUrls).attachment_urls.map(
-                (attachmentUrl: string, index: number) => {
-                  const attachmentUrlTitle =
-                    attachmentUrl.split("/")[
-                      attachmentUrl.split("/").length - 1
-                    ];
-                  return (
-                    <p key={index}>
-                      <Link
-                        className={styles.courseAttachment}
-                        href={attachmentUrl}
-                      >
-                        {attachmentUrlTitle}
-                      </Link>
-                    </p>
-                  );
-                },
-              )
-            : null}
           {course?.modules?.length ? (
             <CourseSyllabus
               syllabus={course.modules || []}
               isInteractive={course.isPaid || currentUser?.role === "admin"}
             />
           ) : null}
+          {course.attachmentUrls &&
+            (course.isPaid || currentUser?.role === "admin") &&
+            JSON.parse(course.attachmentUrls).attachment_urls && (
+              <div className={styles.courseLinks}>
+                {JSON.parse(course.attachmentUrls).attachment_urls.map(
+                  (attachmentUrl: string, index: number) => {
+                    const attachmentUrlTitle =
+                      attachmentUrl.split("/")[
+                        attachmentUrl.split("/").length - 1
+                      ];
+                    return (
+                      <Link
+                        key={index}
+                        className={styles.courseAttachment}
+                        href={attachmentUrl}
+                      >
+                        {attachmentUrlTitle}
+                      </Link>
+                    );
+                  },
+                )}
+              </div>
+            )}
         </div>
         <div className={styles.coursePageRight}>
           <div className={styles.coursePageImage}>
