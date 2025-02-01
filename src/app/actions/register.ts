@@ -35,7 +35,8 @@ export async function register(_prevState: any, formData: FormData) {
   const res: HandlerRegisterResponse = await raw.json();
 
   if (res.token) {
-    (await cookies()).set("token", res.token);
+    const c = await cookies();
+    c.set("token", res.token);
 
     redirect("/explore");
   }

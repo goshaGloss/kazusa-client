@@ -37,7 +37,7 @@ async function getModules(courseId: string): Promise<Module[]> {
 
 export default async function ModulePage(props: ModulePageParams) {
   const params = await props.params;
-  const currentUser = getUser();
+  const currentUser = await getUser();
 
   const modulesData = await getModule(params.id);
   const moduleData = modulesData[0];

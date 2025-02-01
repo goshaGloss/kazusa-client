@@ -6,12 +6,14 @@ import { cookies } from "next/headers";
 import {} from "next/cache";
 import Image from "next/image";
 
-export default function Header() {
-  const creds = getUser();
+export default async function Header() {
+  const creds = await getUser();
 
   const logout = async () => {
     "use server";
-    (await cookies()).delete("token");
+
+    const c = await cookies();
+    c.delete("token");
   };
 
   return (

@@ -26,7 +26,8 @@ export async function login(_prevState: any, formData: FormData) {
   const res: HandlerLoginResponse = await raw.json();
 
   if (res?.token) {
-    (await cookies()).set("token", String(res.token));
+    const c = await cookies();
+    c.set("token", String(res.token));
     redirect("/explore");
   }
 }

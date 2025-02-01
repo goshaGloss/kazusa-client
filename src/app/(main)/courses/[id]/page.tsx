@@ -27,7 +27,7 @@ export default async function CoursePage(props: {
   params: Promise<CoursePageParams>;
 }) {
   const params = await props.params;
-  const currentUser = getUser();
+  const currentUser = await getUser();
 
   const courses = await getCourse(params.id);
   const course = courses[0];

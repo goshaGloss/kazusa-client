@@ -1,4 +1,4 @@
-import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
+import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 
 interface UserClaims {
@@ -16,8 +16,9 @@ interface UserData {
   role: "admin" | "user";
 }
 
-export function getUser(): UserData | null {
-  const tokenCookie = (cookies() as unknown as UnsafeUnwrappedCookies).get("token");
+export async function getUser(): Promise<UserData | null> {
+  const c = await cookies();
+  const tokenCookie = c.get("token");
 
   if (!tokenCookie?.value) {
     return null;

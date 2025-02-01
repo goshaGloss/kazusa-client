@@ -1,8 +1,8 @@
 import { NextRequest } from "next/server";
 import { getUser } from "./app/utils/auth";
 
-export function middleware(request: NextRequest) {
-  const currentUser = getUser();
+export async function middleware(request: NextRequest) {
+  const currentUser = await getUser();
 
   if (request.nextUrl.pathname.startsWith("/admin")) {
     if (!currentUser) {
